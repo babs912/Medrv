@@ -1,0 +1,3 @@
+RewriteEngine on
+
+Rule (.*) public/$1 [L]
