@@ -315,4 +315,11 @@ div.clear {
   color: #f04d4d;
 }
 
+/*******************************LOGIN*********************************/
+.login-panel {
+  margin-top: 8%;
+  width: 280px;
+  padding: 2em;
+}
+
 /*# sourceMappingURL=style.css.map */

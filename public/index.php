@@ -10,7 +10,4 @@ spl_autoload_register(function ($name) {
     require CORE . DS . ucfirst($name) . '.php';
 });
 
-
-$_SESSION['service'] = 'Bloc opératoir';
-
 $dispatcher = new Dispatcher();

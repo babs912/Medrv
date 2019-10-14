@@ -3,6 +3,13 @@ class Router
 {
     static function parse($request, $url)
     {
+        if($url == '/login'){
+            $url = 'security/login';
+        }
+        if($url == '/register'){
+            $url = 'security/register';
+        }
+
         $url = trim($url, '/');
         $params = explode('/', $url);
 

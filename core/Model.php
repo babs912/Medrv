@@ -2,7 +2,7 @@
 require ROOT . DS . 'config' . DS . 'Database.php';
 class Model
 {
-    private $con;
+    public $con;
     private $model = '';
 
     public function __construct($model)
@@ -12,11 +12,21 @@ class Model
         $this->model = $model;
     }
     public function find(?string $type = null, array $options = null)
-    { }
+    { 
+        switch ($type) {
+            case 'all':
+              return  self::all($options);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
 
-    public function all($options){
+    public function all(?array $options = null){
         $sql = "SELECT * FROM ".$this->model." ";
-        if($options['cond']){
+        if(!empty($options['cond'])){
             $sql.=" WHERE ";
             $cond = $options['cond'];
             foreach ($cond as $k => $v) {
@@ -28,11 +38,12 @@ class Model
 
         if($q->execute()){
             $data = [];
-            while ($row = $q->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $q->fetch(PDO::FETCH_OBJ)) {
                 $data[] = $row;
             }
             return $data;
         }
+        
     }
 
    public function findBy(string $property, $value){
@@ -53,10 +64,10 @@ class Model
 
     }
 
-    public function findSpecialityService()
+    public function findSpecialityService($service)
     {
        
-        $sql = "SELECT * FROM " . $this->model . " WHERE service_id IN (SELECT id FROM Service WHERE name='" . $_SESSION['service'] . "')";
+        $sql = "SELECT * FROM " . $this->model . " WHERE service_id IN (SELECT id FROM Service WHERE name='" . $service . "')";
         $q = $this->con->prepare($sql);
         if ($q->execute()) {
             $data = [];

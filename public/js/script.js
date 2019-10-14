@@ -33,14 +33,16 @@ $(function() {
 
       info = JSON.parse(data)[0];
       $('.doctor-details').hide("slow",()=>{
-        $('.doctor-details').show("slow");
+        $('.doctor-details').show("slow",()=>{
+          $("#avatar").attr('src',`../img/avatar/${info.avatar}`)
+          $("#doctorName").text(info.name);
+          $('#doctorEmail').text(info.email);
+          $('#doctorPhone').text(info.phone);
+          $('#doctorDomaine').text(speciality);
+        });
       });
 
-     
-         $("#doctorName").text(info.name);
-         $('#doctorEmail').text(info.email);
-         $('#doctorPhone').text(info.phone);
-         $('#doctorDomaine').text(speciality);
+        
 
       });
     });

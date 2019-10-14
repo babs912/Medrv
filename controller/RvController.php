@@ -16,7 +16,7 @@ class RvController extends Controller
     {
 
         $specialityManager = new SpecialityModel();
-        $specialities = $specialityManager->findSpecialityService();
+        $specialities = $specialityManager->findSpecialityService($_SESSION['service']);
 
         $calendar = new Calendar();
         $this->render('rv/new', ['calendar' => $calendar->show(), 'specialities' => $specialities]);

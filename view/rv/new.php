@@ -11,7 +11,7 @@
                <div class="col-sm-5">
                     <div class="doctor-details p-2 hide">
                        <div class="profile">
-                          <img src="../img/91.jpg" alt="" class="rounded-circle">
+                          <img src="../img/91.jpg" alt="" class="rounded-circle" id="avatar">
                           <div class="text">
                             <span> <span class="fa fa-user-md"></span> <strong class="font-weight-bolder" id="doctorName"></strong> </span><br>
                             <span> <span class="fa fa-envelope"></span> <em id="doctorEmail"></em> </span><br>
