@@ -1,92 +1,68 @@
-<div class="container mt-4">
+<div class="mt-4">
 
     <div class="row">
-        <div class="col-9">
-            <div class="calendar">
-                <?= $calendar ?>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="doctor-panel">
-                <select class="custom-select mr-sm-2" id="speciality">
-                    <option selected>Specialite</option>
-                    <div class="dropdown-divider"></div>
-                    <?php foreach ($specialities as  $speciality) : ?>
-                        <option value="<?= $speciality->name ?>"><?= $speciality->name ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <ul class="doctors">
-                    <li>
-                        <div class="doctor-item" data-planning="2,8,16,20">
-                            <span class="fa fa-user-md"></span>
-                            <div class="doctor-infos">
-                                <span>Doctor Name</span>
-                                <span>0 p</span>
-                            </div>
-                            <div class="time w-100 pr-3">
-                                <span class="fa fa-watcher"></span>
-                                <span>Matin: <strong class="float-right">08:00 - 13:30</strong> </span> <br>
-                                <span>Apres-midi: <strong class="float-right">15:00 - 17:00</strong> </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="doctor-item" data-planning="10,8,15,13">
-                            <span class="fa fa-user-md"></span>
-                            <div class="doctor-infos">
-                                <span>Doctor Name</span>
-                                <span>0 p</span>
-                            </div>
-                            <div class="time w-100 pr-3">
-                                <span class="fa fa-watcher"></span>
-                                <span>Matin: <strong class="float-right">08:00 - 13:30</strong> </span> <br>
-                                <span>Apres-midi: <strong class="float-right">15:00 - 17:00</strong> </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="doctor-item" data-planning="1,8,15,23">
-                            <span class="fa fa-user-md"></span>
-                            <div class="doctor-infos">
-                                <span>Doctor Name</span>
-                                <span>0 p</span>
-                            </div>
-                            <div class="time w-100 pr-3">
-                                <span class="fa fa-watcher"></span>
-                                <span>Matin: <strong class="float-right">08:00 - 13:30</strong> </span> <br>
-                                <span>Apres-midi: <strong class="float-right">15:00 - 17:00</strong> </span>
-                            </div>
+        <div class="col-sm-9">
+           <div class="row">
+               <div class="col-sm-7">
+                    <div class="calendar ">
+                        <?= $calendar ?>
+                    </div>
+               </div>
+               <div class="col-sm-5">
+                    <div class="doctor-details p-2 hide">
+                       <div class="profile">
+                          <img src="../img/91.jpg" alt="" class="rounded-circle">
+                          <div class="text">
+                            <span> <span class="fa fa-user-md"></span> <strong class="font-weight-bolder" id="doctorName"></strong> </span><br>
+                            <span> <span class="fa fa-envelope"></span> <em id="doctorEmail"></em> </span><br>
+                            <span> <span class="fa fa-phone"></span>  <em id="doctorPhone"></em> </span><br>
+                          </div>
+                       </div>
+                        <div class="domaine">
+                        <span>Domaine: <em id="doctorDomaine"></em></span>
 
                         </div>
-                    </li>
-                    <li>
-                        <div class="doctor-item" data-planning="5,9,17,19">
-                            <span class="fa fa-user-md"></span>
-                            <div class="doctor-infos">
-                                <span>Doctor Name</span>
-                                <span>0 p</span>
-                            </div>
-                            <div class="time w-100 pr-3">
-                                <span class="fa fa-watcher"></span>
-                                <span>Matin: <strong class="float-right">08:00 - 13:30</strong> </span> <br>
-                                <span>Apres-midi: <strong class="float-right">15:00 - 17:00</strong> </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="doctor-item" data-planning="12,18,17,30">
-                            <span class="fa fa-user-md"></span>
-                            <div class="doctor-infos">
-                                <span>Doctor Name</span>
-                                <span>0 p</span>
-                            </div>
-                            <div class="time w-100 pr-3">
-                                <span class="fa fa-watcher"></span>
-                                <span>Matin: <strong class="float-right">08:00 - 13:30</strong> </span> <br>
-                                <span>Apres-midi: <strong class="float-right">15:00 - 17:00</strong> </span>
-                            </div>
-                        </div>
-                    </li>
+                       <div class="plannning">
+                           <div class="morning">
+                              <strong>Matin:</strong>
+                              <em class="start">80:30</em> - <em class="end">13:30</em>
+                           </div>
+                           <div class="after-noon">
+                              <strong>Soir:</strong>
+                              <em class="start">15:30</em> - <em class="end">17:30</em>
+                           </div>
+                       </div>
+                       <div class="patient">
+                           <small class="text-white">Patients programmes pour cette date</small>
+                           <h5 class="text-warning font-weight-bolder">10</h5>
+                       </div>
+                       <div class="actions text-center">
+                       <button class="btn btn-lg btn-success" data-toggle="modal" data-target="#patientFormModal" data-whatever="@getbootstrap"> 
+                           <span class="fa fa-user-plus"></span>
+                           Ajouter une patient
+                        </button>
+                       </div>
+                      
+                    </div>
+               </div>
+           </div>
+           
+        </div>
+        <div class="col-sm-3">
+            <div class="doctor-panel">
+                <div class="speciality-select">
+                    <h5 class="text-white text-center font-weight-bold">Choisir une Specialite</h5>
+                    <select class="custom-select mr-sm-2" id="speciality">
+                        <option selected>Specialite</option>
+                        <div class="dropdown divider"></div>
+                        <?php foreach ($specialities as  $speciality) : ?>
+                            <option value="<?php echo $speciality->name ?>"><?= $speciality->name ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <ul class="doctors" id="doctorSpecialityContainer">
+                   
                 </ul>
             </div>
 

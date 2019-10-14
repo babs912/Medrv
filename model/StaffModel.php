@@ -2,7 +2,7 @@
 
 class StaffModel extends Model
 {
-    var $model = 'staff';
+    var $model = 'Staff';
     public function __construct()
     {
         parent::__construct($this->model);

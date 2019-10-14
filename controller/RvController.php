@@ -6,9 +6,15 @@ require ROOT . DS . 'model' . DS . 'SpecialityModel.php';
 
 class RvController extends Controller
 {
+    private $staffManager;
+    public function __construct()
+    {
+        $this->staffManager = new StaffModel();
+    }
 
     public function new()
     {
+
         $specialityManager = new SpecialityModel();
         $specialities = $specialityManager->findSpecialityService();
 
@@ -21,9 +27,17 @@ class RvController extends Controller
         $this->render('rv/list');
     }
 
-    public function specialities()
+    public function doctorsSpeciality()
     {
+      print_r(json_encode($this->staffManager->findDoctorSpeciality($_GET['speciality'])));
+      
+    }
 
-        $this->render('rv/specialities');
+    public function getDoctorDetails(){
+        if($_GET['id']){
+        print_r(json_encode($this->staffManager->findBy('id',(int) $_GET['id'])));
+
+        }
+        
     }
 }

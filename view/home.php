@@ -27,4 +27,4 @@
 </div>
 
 
-<a href="rv/new" class="add-btn"> <span>+</span> </a>
+<a href="rv/new" class="add-btn"> <span class="fa fa-user-plus"></span> </a>

@@ -11,6 +11,6 @@ spl_autoload_register(function ($name) {
 });
 
 
-$_SESSION['service'] = 'Cardiologie';
+$_SESSION['service'] = 'Bloc opératoir';
 
 $dispatcher = new Dispatcher();
