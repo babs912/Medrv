@@ -1,5 +1,6 @@
 $(function() {
   var speciality = "";
+  var appointDetails = {};
   
 
   $("#speciality").on("change", e => {
@@ -18,10 +19,11 @@ $(function() {
 
   
   if(result != "[]"){
-    data = JSON.parse(result);
+    const data = JSON.parse(result);
     for (let i = 0; i < data.length; i++) {
       const elt = data[i];
-        $('#doctorSpecialityContainer').append(displayDoctor(elt)).show() ;
+        $('#doctorSpecialityContainer').append(displayDoctor(elt)) ;
+        
     }
 
     $(".doctor-item").on("click", e => {
@@ -31,7 +33,8 @@ $(function() {
       targetElt.css("background-color", "#a9d9f0");
       $.get( "/rv/getDoctorDetails",{id: targetElt.data('id')} ,function(data) {
 
-      info = JSON.parse(data)[0];
+     const info = JSON.parse(data)[0];
+       appointDetails.doctor_id = info.id;
       $('.doctor-details').hide("slow",()=>{
         $('.doctor-details').show("slow",()=>{
           $("#avatar").attr('src',`../img/avatar/${info.avatar}`)
@@ -51,7 +54,6 @@ $(function() {
       }
     });
   });
-});
 
 function displayDoctor(data) {
   const item =
@@ -73,12 +75,39 @@ function displayDoctor(data) {
   
 }
 
-
-
-
 function htmlToElement(html) {
   var template = document.createElement('template');
   html = html.trim(); // Never return a text node of whitespace as the result
   template.innerHTML = html;
   return template.content.firstChild;
 }
+
+$('.dates .active-date').on('click',(e)=>{
+  const clickedElt = $(e.target);
+  const targetElt = clickedElt.closest(".dates li");
+
+  $('.dates .active-date').removeClass('selected-date');
+  targetElt.addClass('selected-date');
+  
+  appointDetails.planned_at = targetElt.data('date');
+
+})
+
+$('#add-appoint').on('click',()=>{
+  const data = $('#patientForm').serializeArray().reduce((obj,item)=>{
+      obj[item.name] = item.value;
+      return obj;
+  }, {})
+
+
+ 
+  $.post('/rv/new',
+  $.extend(appointDetails,data)
+  ,
+  (data)=>{
+    console.log(data)
+  })
+  
+})
+});
+

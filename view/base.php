@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-sm-1 mt-5">
 
-                <div class="side-nav">
+                <div class="side-nav d-none d-sm-block">
 
                     <ul class="list-unstyled p-0 ">
                         <li>

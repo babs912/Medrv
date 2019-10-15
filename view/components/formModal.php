@@ -11,8 +11,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-
+                <form id="patientForm">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -84,7 +83,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-success">Enregistrer</button>
+                <button type="button" class="btn btn-success" id="add-appoint">Enregistrer</button>
             </div>
         </div>
     </div>

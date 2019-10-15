@@ -27,6 +27,10 @@ class Calendar
 
     private $naviHref = null;
 
+    public $active_date = "active-date";
+    public $inactive_date = "inactive-date";
+
+
     /********************* PUBLIC **********************/
 
     /**
@@ -119,9 +123,17 @@ class Calendar
 
             $cellContent = null;
         }
+       
+       $li = '<li data-date="' . $this->currentDate . '" class=" ';
+        if( in_array($cellNumber, [6,7,13,14,20,21,27,28]) == 1 || $this->currentDate == NULL){
+           $li.= $this->inactive_date;
+        }else{
+           $li.= $this->active_date;
 
+        }
 
-        return '<li id="li-' . $this->currentDate . '" class="' . ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) . ($cellContent == null ? 'mask' : '') . ($this->currentDay - 1) . '">' . $cellContent . '</li>';
+        $li.= ($cellNumber % 7 == 1 ? ' start ' : ($cellNumber % 7 == 0 ? ' end ' : ' ')) . ($cellContent == null ? 'mask' : '') . ($this->currentDay - 1) . '">' . $cellContent . '</li>';
+        return $li;
     }
 
 

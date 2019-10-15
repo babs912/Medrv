@@ -1,8 +1,10 @@
 <?php
+ require  ACCESS;
+ $model = ROOT . DS . 'model' . DS ;
 require ROOT . DS . 'Utils' . DS . 'Calendar.php';
-require ROOT . DS . 'model' . DS . 'StaffModel.php';
-require ROOT . DS . 'model' . DS . 'SpecialityModel.php';
-
+require  $model.'StaffModel.php';
+require $model.'SpecialityModel.php';
+require $model.'AppointModel.php';
 
 class RvController extends Controller
 {
@@ -14,6 +16,12 @@ class RvController extends Controller
 
     public function new()
     {
+        if(!empty($_POST)){
+           $appointManager = new AppointModel();
+           $appointManager->create($_POST);
+           return false;
+
+        }
 
         $specialityManager = new SpecialityModel();
         $specialities = $specialityManager->findSpecialityService($_SESSION['service']);

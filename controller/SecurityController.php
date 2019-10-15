@@ -1,8 +1,8 @@
 <?php
-require ROOT.DS.'model'.DS.'StaffModel.php';
-require ROOT.DS.'model'.DS.'ServiceModel.php';
-require ROOT.DS.'model'.DS.'UserModel.php';
-
+$models = ROOT.DS.'model'.DS;
+require $models.'StaffModel.php';
+require $models.'ServiceModel.php';
+require $models.'UserModel.php';
 
 
 class SecurityController  extends Controller
@@ -32,6 +32,7 @@ class SecurityController  extends Controller
                 header('Location:/login');  
              }else{
                 $_SESSION['username'] = $_POST['username'];
+                $_SESSION['authenticated'] = true;
                 $_SESSION['service'] = $_POST['service'];
                 header('Location:/home');      
              }
