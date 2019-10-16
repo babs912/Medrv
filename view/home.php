@@ -1,4 +1,11 @@
-<div class="main-info">
+<?php require_once ROOT.DS.'view'.DS.'layouts'.DS.'_header.php'; ?>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-1">
+       <?php require_once ROOT.DS.'view'.DS.'layouts'.DS.'_sidenav.php'; ?>
+    </div>
+    <div class="col-sm-11">
+    <div class="main-info">
     <div class="row">
         <div class="col-4">
             <div class="patient-info bg-success">
@@ -28,3 +35,8 @@
 
 
 <a href="rv/new" class="add-btn"> <span class="fa fa-user-plus"></span> </a>
+    </div>
+</div>
+
+</div>
+
