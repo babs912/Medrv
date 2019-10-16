@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 16, 2019 at 03:31 AM
+-- Generation Time: Oct 16, 2019 at 04:24 AM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.3.10-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -168,13 +168,20 @@ CREATE TABLE `Speciality_Staff` (
 
 INSERT INTO `Speciality_Staff` (`speciality_id`, `staff_id`) VALUES
 (6, 1),
+(20, 1),
+(24, 1),
 (6, 2),
 (10, 2),
+(23, 2),
 (6, 3),
 (8, 3),
+(16, 3),
 (8, 4),
+(17, 4),
 (8, 5),
-(10, 5);
+(10, 5),
+(13, 5),
+(14, 5);
 
 -- --------------------------------------------------------
 
