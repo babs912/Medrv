@@ -9,9 +9,12 @@ require $model.'AppointModel.php';
 class RvController extends Controller
 {
     private $staffManager;
+    private $appointManager;
     public function __construct()
     {
         $this->staffManager = new StaffModel();
+        $this->appointManager = new AppointModel();
+
     }
 
     public function new()
@@ -47,5 +50,14 @@ class RvController extends Controller
 
         }
         
+    }
+
+    public function getNumberPatient(){
+        if(isset($_GET['id']) && isset($_GET['date']) ){
+            $date = $_GET['date'];
+            $id = (int) $_GET['id'];
+           print_r($this->appointManager->getNumberPatient($date, $id));
+    
+            }  
     }
 }

@@ -34,10 +34,10 @@
                        </div>
                        <div class="patient">
                            <small class="text-white">Patients programmes pour cette date</small>
-                           <h5 class="text-warning font-weight-bolder">10</h5>
+                           <h5 class="text-warning font-weight-bolder" id="numPatient">0</h5>
                        </div>
                        <div class="actions text-center">
-                       <button class="btn btn-lg btn-success" data-toggle="modal" data-target="#patientFormModal" data-whatever="@getbootstrap"> 
+                       <button disabled class="btn btn-lg btn-success" data-toggle="modal" data-target="#patientFormModal" data-whatever="@getbootstrap" id="loadModal"> 
                            <span class="fa fa-user-plus"></span>
                            Ajouter une patient
                         </button>

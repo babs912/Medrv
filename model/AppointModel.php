@@ -42,7 +42,7 @@ class AppointModel extends Model
 
        $q->execute();
 
-       $idPatient = 3;
+       $idPatient = $this->con->lastInsertId();
        
       $q = $this->con->prepare("INSERT INTO Appoint SET planned_at=:planned_at, doctor_id=:doctor_id, patient_id=:patient_id");
 
@@ -53,4 +53,13 @@ class AppointModel extends Model
        $q->execute();
 
    }
+
+  public function getNumberPatient($date,$id){
+      $sql = "SELECT COUNT(ap.patient_id) FROM `Appoint` ap WHERE planned_at = '".$date."' AND doctor_id = ".$id;
+     $q = $this->con->prepare($sql);
+     $q->execute();
+
+     return $q->fetchColumn();
+      
+  }
 }

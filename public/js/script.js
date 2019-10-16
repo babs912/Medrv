@@ -45,6 +45,7 @@ $(function() {
         });
       });
 
+       numPatient();
         
 
       });
@@ -88,19 +89,23 @@ $('.dates .active-date').on('click',(e)=>{
 
   $('.dates .active-date').removeClass('selected-date');
   targetElt.addClass('selected-date');
-  
-  appointDetails.planned_at = targetElt.data('date');
+  let date =  targetElt.data('date');
+  appointDetails.planned_at = date;
+    numPatient();
+  $('#loadModal').removeAttr("disabled");
+
+
 
 })
 
+
 $('#add-appoint').on('click',()=>{
+
   const data = $('#patientForm').serializeArray().reduce((obj,item)=>{
       obj[item.name] = item.value;
       return obj;
   }, {})
 
-
- 
   $.post('/rv/new',
   $.extend(appointDetails,data)
   ,
@@ -109,5 +114,14 @@ $('#add-appoint').on('click',()=>{
   })
   
 })
+
+function numPatient (){
+  $.get('/rv/getNumberPatient',{
+    date: appointDetails.planned_at,
+    id: appointDetails.doctor_id
+  },(data)=>{
+    $('#numPatient').text(data);
+  })
+}
 });
 
