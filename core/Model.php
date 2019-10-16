@@ -1,15 +1,18 @@
 <?php
 require ROOT . DS . 'config' . DS . 'Database.php';
+require ROOT.DS.'Utils'.DS.'Validator.php';
 class Model
 {
     public $con;
     private $model = '';
+    public $validator;
 
     public function __construct($model)
     {
         $db = new Database();
         $this->con = $db->_connect();
         $this->model = $model;
+        $this->validator = new Validator();
     }
     public function find(?string $type = null, array $options = null)
     { 

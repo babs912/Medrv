@@ -15,13 +15,13 @@ class RvController extends Controller
         $this->staffManager = new StaffModel();
         $this->appointManager = new AppointModel();
 
+
     }
 
     public function new()
     {
         if(!empty($_POST)){
-           $appointManager = new AppointModel();
-           $appointManager->create($_POST);
+           print_r($this->appointManager->create($_POST));
            return false;
 
         }

@@ -2,6 +2,11 @@ $(function() {
   var speciality = "";
   var appointDetails = {};
   
+  $('#loadModal').on('click',()=>{
+      $("#patientForm").css('display',"block").trigger('reset');
+      
+      $(".success-message").css('display','none');
+  });
 
   $("#speciality").on("change", e => {
     $('.doctor-details').hide("slow");
@@ -57,6 +62,7 @@ $(function() {
   });
 
 function displayDoctor(data) {
+  
   const item =
     " <li>" +
     '<div class="doctor-item" data-id="'+data.id+'">' +
@@ -100,7 +106,7 @@ $('.dates .active-date').on('click',(e)=>{
 
 
 $('#add-appoint').on('click',()=>{
-
+  
   const data = $('#patientForm').serializeArray().reduce((obj,item)=>{
       obj[item.name] = item.value;
       return obj;
@@ -110,7 +116,18 @@ $('#add-appoint').on('click',()=>{
   $.extend(appointDetails,data)
   ,
   (data)=>{
-    console.log(data)
+    if(data == 1){
+      $('.modal-body').append(htmlToElement(flashMessage()));
+      $("#patientForm").css('display',"none");
+
+      if($(".modal-body").hasClass('active')) {
+        document.body.classList.remove('active');
+        return;
+    }
+    $(".modal-body").addClass('active');
+    }else{
+      $('#errors').append(htmlToElement(data));
+    }
   })
   
 })
@@ -123,5 +140,26 @@ function numPatient (){
     $('#numPatient').text(data);
   })
 }
+
+function flashMessage(){
+
+  return '<div class="success-message">'+
+         '<svg viewBox="0 0 76 76" class="success-message__icon icon-checkmark">'+
+          '<circle cx="38" cy="38" r="36"/>'+
+          '<path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M17.7,40.9l10.9,10.9l28.7-28.7"/>'+
+      "</svg>"+
+      '<h1 class="success-message__title">Enregistre avec succes</h1>'+
+      '<div class="success-message__content">'+
+          "<p>Merci d'avoir utilise Medrv</p>"+
+      "</div>"+
+    "</div>";
+
+}
+
+
+
+
+
+
 });
 

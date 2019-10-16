@@ -16,7 +16,6 @@ class UserModel extends Model
 
     $q->execute();
 
-
-    return $q->fetchColumn();
+    return $q->fetchAll(PDO::FETCH_OBJ);
  }
 }

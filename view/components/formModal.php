@@ -11,6 +11,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div id="errors"></div>
                 <form id="patientForm">
                     <div class="row">
                         <div class="col-sm-6">

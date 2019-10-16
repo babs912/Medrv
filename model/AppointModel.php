@@ -6,6 +6,7 @@ class AppointModel extends Model
     public function __construct()
     {
         parent::__construct($this->model);
+
     }
 
    public function create ($data){
@@ -21,6 +22,10 @@ class AppointModel extends Model
         $plannedAt = $data['planned_at'];
         $doctorId = $data['doctor_id'];
 
+       $this->validator->set('email',$email);
+        
+       if($this->validator->getErrors() == NULL){
+         
        $sql = "INSERT INTO Patient
        SET first_name=:first_name, 
        last_name=:last_name, 
@@ -50,7 +55,14 @@ class AppointModel extends Model
        $q->bindValue(':doctor_id',$doctorId);
        $q->bindValue(':patient_id',$idPatient);
 
-       $q->execute();
+       if($q->execute()){
+           return true;
+       }
+       }else {
+         return $this->validator->displayErrors();
+       }
+
+
 
    }
 
