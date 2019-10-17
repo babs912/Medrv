@@ -4,8 +4,17 @@ body {
   margin: 0;
 }
 
+.main-content {
+  padding-left: 0.3em;
+  padding-right: 2em;
+}
+
 header {
-  width: 100%;
+  padding: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .fa {
@@ -71,21 +80,26 @@ nav {
 .banner {
   position: relative;
   top: 0;
+  left: 0;
+  max-height: 140px;
   padding: 1em;
   background: #536976;
   background: -webkit-linear-gradient(to right, #292e49, #536976);
   background: linear-gradient(to right, #292e49, #536976);
 }
-.banner .img-box-1,
-.banner .img-box-2 {
-  width: 25%;
-  height: auto;
-}
 .banner .img-box-1 {
+  color: #fff;
   float: left;
+}
+.banner .img-box-1 img {
+  width: 80px;
+  height: 80px;
 }
 .banner .img-box-2 {
   float: right;
+}
+.banner .img-box-2 img {
+  width: 80%;
 }
 
 .side-nav {
@@ -159,7 +173,7 @@ nav {
 }
 .doctor-panel .speciality-select {
   width: 94%;
-  padding: 0.3em 0.2em;
+  padding: 0.3em 1em;
   background-color: #40aff0;
 }
 .doctor-panel .doctors {
@@ -187,7 +201,7 @@ nav {
 div#calendar {
   margin: 0px auto;
   padding: 0px;
-  width: 462px;
+  width: 100%;
   font-family: Helvetica, "Times New Roman", Times, serif;
 }
 
@@ -221,6 +235,10 @@ div#calendar div.box-content {
   border-top: none;
 }
 
+div#calendar ul {
+  width: 100%;
+}
+
 div#calendar ul.label {
   float: left;
   margin: 0px;
@@ -235,7 +253,7 @@ div#calendar ul.label li {
   margin-right: 5px;
   float: left;
   list-style-type: none;
-  width: 60px;
+  width: 13%;
   height: 20px;
   line-height: 20px;
   vertical-align: middle;
@@ -263,8 +281,8 @@ div#calendar ul.dates li {
   vertical-align: middle;
   float: left;
   list-style-type: none;
-  width: 60px;
-  height: 60px;
+  width: 13%;
+  height: 13%;
   font-size: 18px;
   transition: background-color 0.5s ease-out;
   color: #fff;
@@ -315,6 +333,9 @@ div.clear {
 }
 .doctor-details .plannning {
   margin-top: 2em;
+}
+.doctor-details .plannning .fa {
+  font-size: 20px;
 }
 .doctor-details .plannning .morning, .doctor-details .plannning .after-noon {
   font-weight: 600;
@@ -383,6 +404,32 @@ div.clear {
 .icon-checkmark path {
   transition: stroke-dashoffset 350ms ease;
   transition-delay: 100ms;
+}
+
+/****************************RESPONSIVE*************************/
+@media (min-width: 375px) {
+  #wellcome h1 {
+    font-size: 18px;
+  }
+
+  .doctor-details {
+    margin-top: 0.6em;
+    width: 90%;
+    margin-left: 1em;
+  }
+
+  .doctor-panel {
+    margin-top: 0.6em;
+    margin-left: 0.85em;
+    width: 100%;
+  }
+  .doctor-panel .speciality-select {
+    width: 100%;
+  }
+
+  .add-btn {
+    bottom: 1em;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
