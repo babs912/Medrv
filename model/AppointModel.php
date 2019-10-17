@@ -23,6 +23,15 @@ class AppointModel extends Model
         $doctorId = $data['doctor_id'];
 
        $this->validator->set('email',$email);
+       $this->validator->set('alpha',$firstName);
+       $this->validator->set('alpha',$lastName);
+       $this->validator->set('alpha',$gender);
+       $this->validator->set('int',$doctorId);
+       $this->validator->set('int',$age);
+       $this->validator->set('date',$plannedAt);
+       $this->validator->set('phone',$phone);
+
+
         
        if($this->validator->getErrors() == NULL){
          

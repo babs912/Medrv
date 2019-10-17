@@ -18,4 +18,6 @@ class UserModel extends Model
 
     return $q->fetchAll(PDO::FETCH_OBJ);
  }
+
+ 
 }

@@ -28,10 +28,12 @@ class SecurityController  extends Controller
 
         if((isset($_POST['username']) && isset($_POST['password']) && isset($_POST['service'])) && !empty($_POST['username'] && $_POST['password'] && $_POST['service'])){
 
-            if(!$this->userManager->login($_POST['username'], $_POST['password'])){
+            $user = $this->userManager->login($_POST['username'], $_POST['password']);
+
+            if(count($user) <= 0 ){
                 header('Location:/login');  
              }else{
-                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['user'] = json_encode($this->staffManager->findBy('id',$user[0]->staff_id));
                 $_SESSION['authenticated'] = true;
                 $_SESSION['service'] = $_POST['service'];
                 header('Location:/home');      
