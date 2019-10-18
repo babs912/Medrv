@@ -10,12 +10,12 @@
                     <div class="row">
                         <div class="col-md-9 p-0">
                         <div class="row">
-                            <div class="col-md-7 p-0 pl-5 pr-4">
+                            <div class="col-md-6 p-0 pl-5 pr-4">
                                     <div class="calendar ">
                                         <?= $calendar ?>
                                     </div>
                             </div>
-                            <div class="col-md-5 pl-5 p-sm-0">
+                            <div class="col-md-5 pl-6 p-sm-0">
                                     <div class="doctor-details p-2 hide ">
                                     <div class="profile">
                                         <img src="../img/91.jpg" alt="" class="rounded-circle" id="avatar">
@@ -30,17 +30,18 @@
 
                                         </div>
                                     <div class="plannning mb-2">
-                                        <span class="fa fa-clock-o text-white"></span> Horaires
-                                        <div class="hours">
-                                            <p>
-                                                <strong>Matin:</strong>
-                                                <em class="start">80:30</em> - <em class="end">13:30</em>
-                                            </p>
-                                            <p>
-                                                <strong>Soir:</strong>
-                                                <em class="start">15:30</em> - <em class="end">17:30</em>
-                                            </p>
-                                          
+                                        <div class="hours d-flex">
+                                           <span class="fa fa-clock-o text-muted "> </span>
+                                           <div>
+                                                <p class="ml-3 ">
+                                                    <strong>Matin:</strong>
+                                                    <em class="start">80:30</em> - <em class="end">13:30</em>
+                                                </p>
+                                                <p >
+                                                    <strong>Soir:</strong>
+                                                    <em class="start">15:30</em> - <em class="end">17:30</em>
+                                                </p>
+                                            </div> 
                                         </div>
                                     </div>
                                     <div class="patient mb-2 text-center">
