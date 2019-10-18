@@ -12,27 +12,23 @@ class AppointModel extends Model
    public function create ($data){
 
        
-        $firstName = $data['first_name'];
-        $lastName = $data['last_name'];
-        $gender = $data['gender'];
-        $age = $data['age'];
-        $email = $data['email'];
-        $phone = $data['phone'];
-        $address = $data['address'];
+        $firstName = !empty($data['first_name'])? $data['first_name']: null;
+        $lastName = !empty($data['last_name'])? $data['last_name']: null;
+        $gender = !empty($data['gender'])? $data['gender']: null;
+        $age = !empty($data['age'])? $data['age']: null;
+        $email = !empty($data['email'])? $data['email']: null;
+        $phone = !empty($data['phone'])? $data['phone']: null;
+        $address = !empty($data['address'])? $data['address']: null;
         $plannedAt = $data['planned_at'];
         $doctorId = $data['doctor_id'];
 
-       $this->validator->set('email',$email);
-       $this->validator->set('alpha',$firstName);
-       $this->validator->set('alpha',$lastName);
-       $this->validator->set('alpha',$gender);
-       $this->validator->set('int',$doctorId);
-       $this->validator->set('int',$age);
-       $this->validator->set('date',$plannedAt);
-       $this->validator->set('phone',$phone);
+       $this->validator->valid('email',$email,"L'email",true);
+       $this->validator->valid('alpha',$firstName,"Le prenom",true);
+       $this->validator->valid('alpha',$lastName,"Le nom",true);
+       $this->validator->valid('int',$age,"L'age");
+       $this->validator->valid('date',$plannedAt,"La date",true);
+       $this->validator->valid('int',$phone,"Le Telephone",true,9,9);
 
-
-        
        if($this->validator->getErrors() == NULL){
          
        $sql = "INSERT INTO Patient
@@ -69,6 +65,7 @@ class AppointModel extends Model
        }
        }else {
          return $this->validator->displayErrors();
+
        }
 
 

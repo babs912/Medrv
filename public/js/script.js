@@ -116,6 +116,7 @@ $('#add-appoint').on('click',()=>{
   $.extend(appointDetails,data)
   ,
   (data)=>{
+    console.log(data)
     if(data == 1){
       $('.modal-body').append(htmlToElement(flashMessage()));
       $("#patientForm").css('display',"none");

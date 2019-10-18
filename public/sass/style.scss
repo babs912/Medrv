@@ -105,7 +105,6 @@ cursor: none ;
   top: 0;
   left: 0;
   max-height: 140px;
-  margin-top: 1.8em;
   padding: 1em;
   background: #536976;
   background: -webkit-linear-gradient(to right, #292e49, #536976);
@@ -468,6 +467,10 @@ $success__secondary: #B8BABB;
       font-size: 18px;
     }
   }
+  .banner{
+  margin-top: 1.8em;
+
+  }
   .img-box-1 {
     img{
       width: 60px;
@@ -509,19 +512,22 @@ $success__secondary: #B8BABB;
       font-size: 36px;
     }
   }
+  .banner{
+  margin-top: 3em;
 
+  }
   .img-box-1 {
     img{
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
     }
   }
 
 
   .profile{
     img{
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
     }}
  }
 

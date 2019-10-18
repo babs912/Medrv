@@ -9,15 +9,18 @@ class Validator {
 
     public $errors = array();
 
-    public function set(string $name, $value, boolean $required = null, $min = null, $max = null)
+    public function valid(string $name, $value,string $label, bool $required = null,int $min = null, int $max = null)
     {
         $this->name = $name;
         $this->value = $this->purify($value);
         $this->required =  $required;
+        $this->label = $label;
         $method = "is_".$name;
+
         if(method_exists($this,$method)){
             if(!$this->$method($this->value)){
-                $this->errors[$name] = $name." n'est pas valide";
+                
+                $this->errors[] = $this->label." n'est pas valide";
             }
 
             if($required == true){
@@ -30,7 +33,7 @@ class Validator {
 
 
             if($max != null){
-                $this->min($max);
+                $this->max($max);
             }
         }
 
@@ -43,7 +46,7 @@ class Validator {
         public function required(){
             
             if((isset($this->file) && $this->file['error'] == 4) || ($this->value == '' || $this->value == null)){
-                $this->errors[] = ''.$this->name.' est obligatoire.';
+                $this->errors[] = ''.$this->label.' est obligatoire.';
             }            
             return $this;
             
@@ -55,13 +58,13 @@ class Validator {
             if(is_string($this->value)){
                 
                 if(strlen($this->value) < $length){
-                    $this->errors[] = ''.$this->name.' est trop petit';
+                    $this->errors[] = ''.$this->label.' est trop petit';
                 }
            
             }else{
                 
                 if($this->value < $length){
-                    $this->errors[] = ''.$this->name.' est trop petit';
+                    $this->errors[] = ''.$this->label.' est trop petit';
                 }
                 
             }
@@ -75,13 +78,13 @@ class Validator {
             if(is_string($this->value)){
                 
                 if(strlen($this->value) > $length){
-                    $this->errors[] = ''.$this->name.' est trop long';
+                    $this->errors[] = ''.$this->label.' est trop long';
                 }
            
             }else{
                 
                 if($this->value > $length){
-                    $this->errors[] = ' '.$this->name.' est superieur a la valeur max';
+                    $this->errors[] = ' '.$this->label.' est superieur a la valeur max';
                 }
                 
             }
@@ -93,7 +96,7 @@ class Validator {
         public function equal($value){
         
             if($this->value != $value){
-                $this->errors[] = 'Le'.$this->name.' ne correspond pas.';
+                $this->errors[] = 'Le'.$this->label.' ne correspond pas.';
             }
             return $this;
             
@@ -216,5 +219,7 @@ class Validator {
         public static function is_email($value){
             if(filter_var($value, FILTER_VALIDATE_EMAIL)){ return true; }
         }
+
+    
         
 }
