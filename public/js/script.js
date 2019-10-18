@@ -104,6 +104,13 @@ $('.dates .active-date').on('click',(e)=>{
 
 })
 
+$(".side-nav ul li a").click((e)=>{
+  const clickedElt = $(e.target);
+  const targetElt = clickedElt.closest(".side-nav ul li a");
+  $('.side-nav ul li a').removeClass('selected-nav');
+  targetElt.addClass('selected-nav');
+})
+
 
 $('#add-appoint').on('click',()=>{
   

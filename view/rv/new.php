@@ -29,20 +29,22 @@
                                         <span>Domaine: <em id="doctorDomaine"></em></span>
 
                                         </div>
-                                    <div class="plannning">
-                                        <span class="fa fa-clock-o text-white"></span>
-                                        <div class="morning">
-                                            <strong>Matin:</strong>
-                                            <em class="start">80:30</em> - <em class="end">13:30</em>
-                                        </div>
-                                        <div class="after-noon">
-                                            <strong>Soir:</strong>
-                                            <em class="start">15:30</em> - <em class="end">17:30</em>
+                                    <div class="plannning mb-2">
+                                        <span class="fa fa-clock-o text-white"></span> Horaires
+                                        <div class="hours">
+                                            <p>
+                                                <strong>Matin:</strong>
+                                                <em class="start">80:30</em> - <em class="end">13:30</em>
+                                            </p>
+                                            <p>
+                                                <strong>Soir:</strong>
+                                                <em class="start">15:30</em> - <em class="end">17:30</em>
+                                            </p>
+                                          
                                         </div>
                                     </div>
-                                    <div class="patient">
-                                        <small class="text-white">Patients programmes pour cette date</small>
-                                        <h5 class="text-warning font-weight-bolder" id="numPatient">0</h5>
+                                    <div class="patient mb-2 text-center">
+                                        <small class="text-warning font-weight-bolder" ><em id="numPatient"></em> Patients</small>
                                     </div>
                                     <div class="actions text-center">
                                     <button disabled class="btn btn-lg btn-success" data-toggle="modal" data-target="#patientFormModal" data-whatever="@getbootstrap" id="loadModal"> 
