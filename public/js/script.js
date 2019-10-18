@@ -156,6 +156,31 @@ function flashMessage(){
 
 }
 
+// Toggle menu
+
+$('#menu-bars').on('click',(e)=>{
+  const clickedElt = $(e.target);
+  const targetElt = clickedElt.closest("#menu-bars");
+  targetElt.hide();
+  e.preventDefault();
+
+$("#humberger-menu").show().animate({
+  marginRight: 0
+})
+   
+})
+
+$("#menu-close").click((e)=>{
+  const clickedElt = $(e.target);
+  const targetElt = clickedElt.closest("#menu-bars");
+  e.preventDefault();
+  $("#humberger-menu")
+  .animate({
+    marginRight: "-60%"
+  },()=>{$('#humberger-menu').hide()})
+  
+})
+
 
 
 

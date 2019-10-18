@@ -8,11 +8,14 @@ body {
   padding-right: 2em;
 }
 header {
-  padding: 0;
-  position: relative;
-  top:0;
-  left: 0;
-  right: 0;
+  nav {
+    position: fixed !important;
+    background-color: #fff;
+    top:0;
+    width: 100%;
+    z-index: 130;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  }
 }
 .fa {
   font-size: 16px;
@@ -33,6 +36,30 @@ cursor: none ;
   background-color: #09ad3b;
   &:hover{
     background-color: #09ad3b !important;
+  }
+}
+
+.top-nav{
+  position: absolute;
+  
+  background-color: #40aff0;
+  width: 60%;
+  height: 100vh;
+  z-index: 90;
+  top: 80;
+  right: 0;
+  padding: 2em;
+  ul{
+   
+      .help{
+        margin-left: .5em;
+       
+      }
+    
+  }
+  span,a{
+    color: #fff;
+    font-size: 18px;
   }
 }
 .add-btn {
@@ -56,22 +83,29 @@ cursor: none ;
     background-color: #2c9bdb;
   }
 }
+#humberger-menu{
+  margin-right: -60%;
+  display: none;
+}
 .active-day {
   background-color: #09ad3b !important;
   border: 1px solid red !important;
 }
 .hide {
-  display: none;
+  display: none ;
 }
-nav {
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+.hide-icon{
+  display: none !important;
+
 }
+
 .banner {
 
   position: relative;
   top: 0;
   left: 0;
   max-height: 140px;
+  margin-top: 1.8em;
   padding: 1em;
   background: #536976;
   background: -webkit-linear-gradient(to right, #292e49, #536976);
@@ -80,51 +114,12 @@ nav {
   .img-box-1 {
     color:#fff;
     float: left;
-    img{
-      width: 80px;
-      height: 80px;
-    }
   }
   .img-box-2 {
     float: right;
     img{
       width: 80%;
       
-    }
-  }
-}
-.side-nav {
-  background-color: #40aff0;
-  width: 85px;
-  height: calc(100vh - 280px);
-  padding-top: 65%;
-  ul {
-    padding: 0;
-    li {
-      display: block;
-      padding: 0;
-      width: 100%;
-      cursor: pointer;
-      transition: background-color 0.5s ease-out;
-      &:hover {
-        background-color: #2c9bdb;
-      }
-      margin-top: 0.2em;
-      a {
-        span {
-          color: #fff;
-          font-size: 36px;
-          margin: 0.5em 0 0.5em 0.65em;
-        }
-      }
-
-      &:last-child {
-        a {
-          span {
-            margin-left: 1em;
-          }
-        }
-      }
     }
   }
 }
@@ -154,7 +149,9 @@ nav {
     font-weight: bold;
   }
 }
-
+#menu-close{
+ font-size: 20px;
+}
 .doctor-infos {
 }
 .time {
@@ -167,10 +164,46 @@ nav {
   }
 }
 
+/***********************************SIDE MENU*******************************************/
+
+.side-nav{
+  .title{
+    font-size: 12px;
+    color: #fff;
+  }
+  background-color: #40aff0;
+  padding: .5em 0;
+  ul{
+    li{
+      margin-top: 1em;
+      a{
+        .fa{
+          font-size: 36px;
+          color: #fff;
+
+        }
+        transition: background-color 0.5s ease-out;
+
+        padding: .2em 0;
+        text-align: center;
+        display: block;
+        &:hover{
+          background-color: #2c9bdb;
+          text-decoration: none;
+
+        }
+      }
+      &:last-child{
+       // margin-left: .3em;
+      }
+    }
+  }
+}
+
 /*********************************** RV DOCTOR PANEL ***********************************/
 
 .doctor-panel {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 240px);
 
   .speciality-select {
     width: 94%;
@@ -178,9 +211,9 @@ nav {
     background-color: #40aff0;
   }
   .doctors {
-    height: calc(100vh - 280px);
+    height: calc(100vh - 420px);
 
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: #9ea1a3;
     list-style: none;
     padding: 0.3em;
@@ -307,8 +340,6 @@ div.clear {
   background-color: #40aff0;
   .profile{
     img{
-      width: 80px;
-      height: 80px;
       border-radius: 50%;
     }
     .text{
@@ -437,6 +468,17 @@ $success__secondary: #B8BABB;
       font-size: 18px;
     }
   }
+  .img-box-1 {
+    img{
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .profile{
+    img{
+      width: 60px;
+      height: 60px;
+    }}
  .doctor-details{
    margin-top: .6em;
    width: 90%;
@@ -462,6 +504,25 @@ $success__secondary: #B8BABB;
  }
 
 @media (min-width: 768px) {
+  #wellcome{
+    h1{
+      font-size: 36px;
+    }
+  }
+
+  .img-box-1 {
+    img{
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+
+  .profile{
+    img{
+      width: 80px;
+      height: 80px;
+    }}
  }
 
 @media (min-width: 992px) {  }

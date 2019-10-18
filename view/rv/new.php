@@ -2,20 +2,20 @@
 <div class="container-fluid">
     <div class="main-content">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-xl-1">
                 <?php require_once ROOT.DS.'view'.DS.'layouts'.DS.'_sidenav.php'; ?>
             </div>
-            <div class="col-sm-10 p-0">
+            <div class="col-xl-11 col-lg-12 p-0">
                 <div class="mt-4">
                     <div class="row">
-                        <div class="col-sm-9 p-0">
+                        <div class="col-md-9 p-0">
                         <div class="row">
-                            <div class="col-sm-7 p-0 pl-5 pr-4">
+                            <div class="col-md-7 p-0 pl-5 pr-4">
                                     <div class="calendar ">
                                         <?= $calendar ?>
                                     </div>
                             </div>
-                            <div class="col-sm-5 pl-5 p-sm-0">
+                            <div class="col-md-5 pl-5 p-sm-0">
                                     <div class="doctor-details p-2 hide ">
                                     <div class="profile">
                                         <img src="../img/91.jpg" alt="" class="rounded-circle" id="avatar">
@@ -56,7 +56,7 @@
                         </div>
                         
                         </div>
-                        <div class="col-sm-3 p-0">
+                        <div class="col-md-3 p-0">
                             <div class="doctor-panel">
                                 <div class="speciality-select">
                                     <h5 class="text-white text-center font-weight-bold">Choisir une Specialite</h5>

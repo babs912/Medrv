@@ -4,13 +4,14 @@
 <header>
     <nav class="navbar">
         <a href="/home" class="brand">Medrv</a>
-        <ul class="nav">
+        <ul class="nav d-none d-md-flex">
             <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-envelope"></span></a></li>
             <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-bell"></span></a></li>
             <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-user"></span></a></li>
         </ul>
+        <span class="fa fa-bars d-block d-md-none" id="menu-bars"></span>
     </nav>
-
+    <?php include(ROOT.DS.'view'.DS.'layouts'.DS.'_topnav.php'); ?>
     <div class="banner">
         <div class="row">
             <div class="col-3">
