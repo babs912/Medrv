@@ -471,6 +471,18 @@ $success__secondary: #B8BABB;
     
 }
 
+/*****************************PATIENT LIST PANEL*******************/
+
+.patient-list-panel {
+
+  height: calc(100vh - 120px);
+  overflow-y: scroll;
+  background-color: #40aff0;
+  border-radius: 4px;
+  font-size: .8em;
+ 
+}
+
 
 /****************************RESPONSIVE*************************/
 

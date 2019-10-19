@@ -5,6 +5,7 @@ require ROOT . DS . 'Utils' . DS . 'Calendar.php';
 require  $model.'StaffModel.php';
 require $model.'SpecialityModel.php';
 require $model.'AppointModel.php';
+require $model.'PatientModel.php';
 
 class RvController extends Controller
 {
@@ -35,7 +36,9 @@ class RvController extends Controller
 
     public function list()
     {
-        $this->render('rv/list');
+        $patientManager = new PatientModel();
+        $rvs = $patientManager->getAll();
+        $this->render('rv/list',['rvs'=>$rvs]);
     }
 
     public function doctorsSpeciality()
