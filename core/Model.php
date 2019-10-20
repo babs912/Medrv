@@ -14,20 +14,9 @@ class Model
         $this->model = $model;
         $this->validator = new Validator();
     }
-    public function find(?string $type = null, array $options = null)
-    { 
-        switch ($type) {
-            case 'all':
-              return  self::all($options);
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-    }
-
-    public function all(?array $options = null){
+   
+    public function findAll(?array $options = null)
+    {
         $sql = "SELECT * FROM ".$this->model." ";
         if(!empty($options['cond'])){
             $sql.=" WHERE ";
@@ -49,60 +38,73 @@ class Model
         
     }
 
-   public function findBy(string $property, $value){
-     $sql = "SELECT * FROM ".$this->model." WHERE  ".$property;
-    if(is_int($value)){
-       $sql.= "=".$value;
-    }else{
-       $sql.= "='".$value."'";
-
-    }
-
-       $q = $this->con->prepare($sql);
-
-       $q->execute();
-
-       return $q->fetchAll(PDO::FETCH_ASSOC);
-
-
-    }
-
-    public function findSpecialityService($service)
+    public function findBy(string $property, $value)
     {
-       
-        $sql = "SELECT * FROM " . $this->model . " WHERE service_id IN (SELECT id FROM Service WHERE name='" . $service . "')";
-        $q = $this->con->prepare($sql);
-        if ($q->execute()) {
-            $data = [];
+        $sql = "SELECT * FROM ".$this->model." WHERE  ".$property;
+        if(is_int($value)){
+        $sql.= "=".$value;
+        }else{
+        $sql.= "='".$value."'";
 
-            while ($row = $q->fetch(PDO::FETCH_OBJ)) {
-                $data[] = $row;
-            }
-            return $data;
-        } else {
-            return false;
         }
-    }
 
-    public function findDoctorSpeciality($speciality)
-    {
-        $sql = "SELECT s.id, s.name FROM Staff s
-        INNER JOIN Speciality_Staff
-        ON (Speciality_Staff.staff_id = s.id)
-        INNER JOIN Speciality 
-        ON (Speciality_Staff.speciality_id = Speciality.id)
-        WHERE Speciality.name = '" . $speciality . "'";
         $q = $this->con->prepare($sql);
 
-        if ($q->execute()) {
-            $data = [];
-            while ($row = $q->fetch(PDO::FETCH_ASSOC)) {
-                $data[] = $row;
-            }
+        $q->execute();
 
-            return $data;
-        } else {
-            echo "introuvable";
-        }
+        return $q->fetchAll(PDO::FETCH_ASSOC);
+
     }
+
+    public function create(array $data)
+    {
+
+        $sql = "INSERT INTO ".$this->model." SET ";
+
+        foreach ($data as $k => $v) {
+            $v = ($v != NULL || $v != "")? $v : null;
+            if(is_int($v) || is_null($v) || $v == ""){
+              $sql.= $k."=".$v.", ";
+            }else{
+                $sql.= $k."='".$v." ', ";
+            }
+        }
+
+        $sql = trim($sql,", ");
+
+        $q = $this->con->prepare($sql);
+
+        $q->execute();
+    }
+
+    public function update(int $id, array $data)
+    {
+        $sql = "UPDATE ".$this->model." SET ";
+
+        foreach ($data as $k => $v) {
+
+            $v = ($v != NULL || $v != "")? $v : null;
+            if(is_int($v) || is_null($v) || $v == ""){
+              $sql.= $k."=".$v.", ";
+            }else{
+                $sql.= $k."='".$v." ', ";
+            }
+        }
+
+        $sql = trim($sql,", ");
+
+        $sql.= " WHERE id=".$id;
+        
+        $q = $this->con->prepare($sql);
+
+        $q->execute();
+    }
+
+    public function delete($id)
+    {
+      $this->con->exec("DELETE * ".$this->model." WHERE id=".$id);
+    }
+
+
+
 }

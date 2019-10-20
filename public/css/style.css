@@ -441,7 +441,10 @@ div.clear {
   overflow-y: scroll;
   background-color: #40aff0;
   border-radius: 4px;
-  font-size: 0.8em;
+  font-size: 0.7em;
+}
+.patient-list-panel .fa {
+  font-size: 0.9em;
 }
 
 /****************************RESPONSIVE*************************/

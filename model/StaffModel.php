@@ -8,25 +8,27 @@ class StaffModel extends Model
         parent::__construct($this->model);
     }
 
-   public function create ($data){
-       $role = $data['role'];
-       $name = $data['prenom']." ".$data['nom'];
-       $speciality = $data['speciality'];
-       $email = $data['email'];
-       $phone = $data['phone'];
 
-       $idRole =  $this->con->query("SELECT id FROM Role WHERE name = ".$role);
+    public function findDoctorSpeciality($speciality)
+    {
+        $sql = "SELECT s.id, s.name FROM Staff s
+        INNER JOIN Speciality_Staff
+        ON (Speciality_Staff.staff_id = s.id)
+        INNER JOIN Speciality 
+        ON (Speciality_Staff.speciality_id = Speciality.id)
+        WHERE Speciality.name = '" . $speciality . "'";
+        $q = $this->con->prepare($sql);
 
-       $sql = "INSERT INTO ".$this->model." SET name=:name, email=:email, phone=:phone, role_id=:role";
-       $q = $this->con-prepare($sql);
-       $q->bindValue(':name',$name);
-       $q->bindValue(':email',$email);
-       $q->bindValue(':phone',$phone);
-       $q->bindValue(':role',$idRole);
+        if ($q->execute()) {
+            $data = [];
+            while ($row = $q->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $row;
+            }
 
+            return $data;
+        } else {
+            echo "introuvable";
+        }
+    }
 
-       $q->execute();
-
-       
-   }
 }

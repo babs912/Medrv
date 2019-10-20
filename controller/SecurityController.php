@@ -5,6 +5,7 @@ require $models.'ServiceModel.php';
 require $models.'UserModel.php';
 
 
+
 class SecurityController  extends Controller
 {
    private $staffManager ;
@@ -42,11 +43,12 @@ class SecurityController  extends Controller
         }
 
         $this->render('security/login',[
-            'services' => $this->serviceManager->find('all',[])
+            'services' => $this->serviceManager->findAll()
         ]);
     }
 
-    public function logout(){
+    public function logout()
+    {
 
     }
     

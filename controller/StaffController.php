@@ -5,29 +5,25 @@ $models = ROOT.DS.'model'.DS;
 require $models.'StaffModel.php';
 require $models.'ServiceModel.php';
 require $models.'UserModel.php';
+require $models.'SpecialityModel.php';
+require $models.'RoleModel.php';
+
 require_once ROOT.DS.'Utils'.DS.'Validator.php';
 
-/*
-    $val = new Validation();
-    $val->name('email')->value($email)->pattern('email')->required();
-    $val->name('username')->value($username)->pattern('alpha')->required();
-    $val->name('password')->value($password)->customPattern('[A-Za-z0-9-.;_!#@]{5,15}')->required();
-    $val->name('age')->value($age)->min(18)->max(40);
-    
-    if($val->isSuccess()){
-    	echo "Validation ok!";
-    }else{
-    	echo "Validation error!";
-        var_dump($val->getErrors());
-    }
 
-*/
 
 class StaffController extends  Controller
 {
     private $staffManager;
     private $specialityManager;
     private $roleManager;
+
+    public function __construct()
+    {
+        $this->staffManager = new StaffModel();
+        $this->specialityManager = new SpecialityModel();
+        $this->roleManager = new RoleModel();
+    }
 
 
     public function index()
@@ -37,9 +33,13 @@ class StaffController extends  Controller
 
     public function new () {
 
-        var_dump($_POST);
+        if(isset($_POST['role_id'])){
+            $this->staffManager->create($_POST);
+          }
+        $roles = $this->roleManager->findAll();
+        $specialities = $this->specialityManager->findSpecialityService($_SESSION["service"]);
 
-        $this->render('staff/new',[]);
+        $this->render('staff/new',["specialities" => $specialities, 'roles'=>$roles]);
 
     }
 }
