@@ -80,4 +80,15 @@ class AppointModel extends Model
      return $q->fetchColumn();
       
   }
+
+ public function isAvailableTime($date, $time)
+ {
+     $sql  = "SELECT COUNT(ap.start_time) FROM Appoint ap WHERE ap.planned_at ='".$date."' AND ap.start_time ='".$time."'";
+     $q = $this->con->prepare($sql);
+
+     $q->execute();
+
+     return $q->fetchColumn();
+
+ }
 }

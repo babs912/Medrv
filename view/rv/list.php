@@ -29,8 +29,8 @@
               </div>
             </div>
             <div class="card-body p-1">
-              <span class="fa fa-chevron-right float-right"></span>
-              <span class="fa fa-chevron-down float-right hide"></span>
+              <span class="fa fa-chevron-right float-right" ></span>
+              <span class="fa fa-chevron-down float-right hide" ></span>
               
             <div class="details hide">
 

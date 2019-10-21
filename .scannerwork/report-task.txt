@@ -1,0 +1,6 @@
+projectKey=keurm912
+serverUrl=http://localhost:9000
+serverVersion=7.2.1.14109
+dashboardUrl=http://localhost:9000/dashboard?id=keurm912
+ceTaskId=AW3u45WyY5rs6tq30MxZ
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AW3u45WyY5rs6tq30MxZ

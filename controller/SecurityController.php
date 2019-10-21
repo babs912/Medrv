@@ -11,9 +11,13 @@ class SecurityController  extends Controller
    private $staffManager ;
    private $serviceManager;
    private $userManager;
-
+   public $layout = "base";
+   
+   
 
     public function __construct(){
+      parent::__construct() ;
+
        $this->staffManager = new  StaffModel();
        $this->serviceManager = new  ServiceModel();
        $this->userManager = new  UserModel();

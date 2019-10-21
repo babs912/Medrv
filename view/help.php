@@ -1,10 +1,4 @@
-<?php require_once ROOT.DS.'view'.DS.'layouts'.DS.'_header.php'; ?>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-1">
-        <?php require_once ROOT.DS.'view'.DS.'layouts'.DS.'_sidenav.php'; ?>
-        </div>
-        <div class="col-sm-11 p-4">
              <h2>Guide d'utilisation de la plateforme </h2>
              <ul>
                  <li> 
@@ -44,7 +38,5 @@
 
                  </p>
              </div>
-        </div>
-    </div>
 </div>
 

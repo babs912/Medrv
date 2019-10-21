@@ -6,6 +6,8 @@ require  $model.'StaffModel.php';
 require $model.'SpecialityModel.php';
 require $model.'AppointModel.php';
 require $model.'PatientModel.php';
+require ROOT.DS."Utils".DS."Planning.php";
+
 
 class RvController extends Controller
 {
@@ -15,6 +17,7 @@ class RvController extends Controller
     {
         $this->staffManager = new StaffModel();
         $this->appointManager = new AppointModel();
+        parent::__construct();
 
 
     }
@@ -31,7 +34,14 @@ class RvController extends Controller
         $specialities = $specialityManager->findSpecialityService($_SESSION['service']);
 
         $calendar = new Calendar();
-        $this->render('rv/new', ['calendar' => $calendar->show(), 'specialities' => $specialities]);
+        $p = new Planning(8,30,17,30);
+
+        $this->render('rv/new', 
+        [
+            'calendar' => $calendar->show(), 
+            'specialities' => $specialities,
+            'planning' => $p->getPlanning()
+        ]);
     }
 
     public function list()
@@ -62,5 +72,16 @@ class RvController extends Controller
            print_r($this->appointManager->getNumberPatient($date, $id));
     
             }  
+    }
+
+    public function isAvailableTime()
+    {
+        if($this->appointManager->isAvailableTime($_POST['date'],$_POST['time'])  == 1)
+        {
+           echo 1;
+        }else{
+            echo 0;
+        }
+
     }
 }

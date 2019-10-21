@@ -1,6 +1,35 @@
 $(function() {
   var speciality = "";
   var appointDetails = {};
+
+  var routes = 
+  [
+    {
+      url: "/rv/new",
+      link: "rv-new"
+    },
+    {
+      url: "/help/index",
+      link: "help"
+    }
+]
+
+routes.forEach(item => {
+   
+    $("#"+item.link+"").click((e)=>{
+      e.preventDefault();
+      $('#loading').css({display:"block"});
+      
+     $.ajax({
+       type: "GET",
+       url: item.url,
+       success: (data)=>{
+      $('#loading').css({display:"none"});
+         $("#main-container").html(data);
+       }
+     })
+    })
+});
   
   $('#loadModal').on('click',()=>{
       $("#patientForm").css('display',"block").trigger('reset');
@@ -99,6 +128,25 @@ $('.dates .active-date').on('click',(e)=>{
   appointDetails.planned_at = date;
     numPatient();
   $('#loadModal').removeAttr("disabled");
+  $('.load-modal').each((e)=>{
+   let  elt = $('.load-modal')[e];
+
+  $.post('/rv/isAvailableTime',{date:targetElt.data('date'), time:elt.getAttribute('data-time')},(data)=>{
+    if(data == 0){
+      
+      elt.classList = "load-modal active-time"
+      elt.setAttribute('data-toggle',"modal")
+      elt.setAttribute('data-target',"#patientFormModal")
+      elt.setAttribute('data-whatever',"@getbootstrap")
+
+    }else{
+      elt.classList = "load-modal inactive-time";
+    }
+  })
+
+   
+
+ })
 
 
 
@@ -184,15 +232,24 @@ $("#menu-close").click((e)=>{
   e.preventDefault();
   $("#humberger-menu")
   .animate({
-    marginRight: "-60%"
+    marginRight: "-60%",
   },()=>{$('#humberger-menu').hide()})
   
 })
 
 
+ $(".fa-chevron-right").on("click",(e)=>{
+   console.log(e)
+  const clickedElt = $(e.target);
+  const targetElt = clickedElt.closest(".fa-chevron-right");
+  targetElt.hide();
+  $(".fa-chevron-right").removeClass("hide");
+ })
 
-
-
+ 
 
 });
+
+
+
 

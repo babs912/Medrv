@@ -1,16 +1,7 @@
 <?php
-
-
+ 
 class Calendar
 {
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
-    }
 
     /********************* PROPERTY ********************/
     private $dayLabels = array("Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim");
@@ -25,7 +16,6 @@ class Calendar
 
     private $daysInMonth = 0;
 
-    private $naviHref = null;
 
     public $active_date = "active-date";
     public $inactive_date = "inactive-date";
@@ -83,14 +73,8 @@ class Calendar
             }
         }
 
-        $content .= '</ul>';
+      return  $content .= '</ul><div class="clear"></div></div></div>';
 
-        $content .= '<div class="clear"></div>';
-
-        $content .= '</div>';
-
-        $content .= '</div>';
-        return $content;
     }
 
     /********************* PRIVATE **********************/

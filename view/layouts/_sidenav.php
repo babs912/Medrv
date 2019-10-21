@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="/rv/new">
+            <a href="#" id="rv-new">
                 <span class="fa fa-book"></span><br>
                 <span class="title">Rv</span>
             </a>
@@ -19,7 +19,7 @@
             </a>
         </li>
         <li>
-            <a href="/help">
+            <a href="#" id="help">
                 <span class="fa fa-info"></span><br>
                 <span class="title">Aide</span>
             </a>
