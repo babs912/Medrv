@@ -59,22 +59,26 @@ class Model
     public function create(array $data)
     {
 
+
         $sql = "INSERT INTO ".$this->model." SET ";
 
         foreach ($data as $k => $v) {
             $v = ($v != NULL || $v != "")? $v : null;
             if(is_int($v) || is_null($v) || $v == ""){
-              $sql.= $k."=".$v.", ";
+              $sql.= $k." = ".$v.", ";
             }else{
-                $sql.= $k."='".$v." ', ";
+                $sql.= $k." = '".$v."', ";
             }
         }
 
         $sql = trim($sql,", ");
 
-        $q = $this->con->prepare($sql);
 
-        $q->execute();
+       $q = $this->con->prepare($sql);
+
+        if($q->execute()){
+            return 1;
+        }
     }
 
     public function update(int $id, array $data)

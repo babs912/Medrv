@@ -1,6 +1,6 @@
 $(function() {
   var speciality = "";
-  var appointDetails = {};
+  var appointDetails = { };
 
   var routes = 
   [
@@ -31,7 +31,7 @@ routes.forEach(item => {
     })
 });
   
-  $('#loadModal').on('click',()=>{
+  $('.load-modal').on('click',()=>{
       $("#patientForm").css('display',"block").trigger('reset');
       
       $(".success-message").css('display','none');
@@ -126,12 +126,19 @@ $('.dates .active-date').on('click',(e)=>{
   targetElt.addClass('selected-date');
   let date =  targetElt.data('date');
   appointDetails.planned_at = date;
-    numPatient();
+  numPatient();
   $('#loadModal').removeAttr("disabled");
   $('.load-modal').each((e)=>{
-   let  elt = $('.load-modal')[e];
 
-  $.post('/rv/isAvailableTime',{date:targetElt.data('date'), time:elt.getAttribute('data-time')},(data)=>{
+
+    let elt = $('.load-modal')[e];
+    elt.addEventListener('click',(e)=>{
+   appointDetails.start_time = e.target.getAttribute('data-time');
+      
+    })
+   let time = elt.getAttribute('data-time');
+
+  $.post('/rv/isAvailableTime',{date:targetElt.data('date'), time:time},(data)=>{
     if(data == 0){
       
       elt.classList = "load-modal active-time"
@@ -168,10 +175,13 @@ $('#add-appoint').on('click',()=>{
   }, {})
 
   $.post('/rv/new',
-  $.extend(appointDetails,data)
+  {
+    'appoint':appointDetails,
+   'patient': data
+  }
   ,
   (data)=>{
-    console.log(data)
+    console.log(data);
     if(data == 1){
       $('.modal-body').append(htmlToElement(flashMessage()));
       $("#patientForm").css('display',"none");
@@ -191,7 +201,8 @@ $('#add-appoint').on('click',()=>{
 function numPatient (){
   $.get('/rv/getNumberPatient',{
     date: appointDetails.planned_at,
-    id: appointDetails.doctor_id
+    id:  appointDetails.doctor_id,
+    time: appointDetails.start_time
   },(data)=>{
     $('#numPatient').text(data);
   })

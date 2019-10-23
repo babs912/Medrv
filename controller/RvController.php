@@ -13,10 +13,12 @@ class RvController extends Controller
 {
     private $staffManager;
     private $appointManager;
+    private $patientManager ;
     public function __construct()
     {
         $this->staffManager = new StaffModel();
         $this->appointManager = new AppointModel();
+        $this->patientManager = new PatientModel();
         parent::__construct();
 
 
@@ -24,10 +26,12 @@ class RvController extends Controller
 
     public function new()
     {
+        
         if(!empty($_POST)){
-           print_r($this->appointManager->create($_POST));
+            if(isset($_POST['appoint'])){
+              print_r($this->patientManager->add($_POST));
+            }
            return false;
-
         }
 
         $specialityManager = new SpecialityModel();

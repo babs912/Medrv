@@ -1,7 +1,7 @@
 <div class="modal fade" id="patientFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header p-1">
                 <h5 class="modal-title text-center" id="exampleModalLabel">
                     <span class="text-info font-weight-bold">Rendez-vous</span> <br>
                     <span class="text-warning font-weight-bold">08:15 - 08:30</span>
@@ -82,7 +82,7 @@
 
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer p-1">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-success" id="add-appoint">Enregistrer</button>
             </div>

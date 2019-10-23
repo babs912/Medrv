@@ -1,5 +1,4 @@
 <?php
-
 class PatientModel extends Model
 {
     var $model = 'Patient';
@@ -20,8 +19,29 @@ class PatientModel extends Model
             $data[] = $row;
         }
 
+
        return $data;
     }
+
+    public function add ($data){
+        $patient = $data['patient'];
+        if($this->create($patient) == 1)
+        {
+            $patentId =  (int) $this->con->lastInsertId();
+          
+         $data['appoint'] += ['patient_id'=>$patentId];
+
+         
+         $appointManager = new AppointModel();
+         return $appointManager->add($data['appoint']);
+        }
+
+        
+    
+    }
+    
+
+
 
    
 }
