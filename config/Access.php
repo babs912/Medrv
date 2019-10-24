@@ -1,4 +1,4 @@
 <?php 
-if (!isset($_SESSION['authenticated']) && $_SESSION['authenticated'] != true){
+if (isset($_SESSION['authenticated'])  && $_SESSION['authenticated'] != true){
     header('Location:/login');
 }

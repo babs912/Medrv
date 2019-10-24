@@ -53,7 +53,8 @@ class SecurityController  extends Controller
 
     public function logout()
     {
-
+       $_SESSION['authenticated'] = false;
+       header('Location:/login');
     }
     
 }

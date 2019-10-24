@@ -15,9 +15,25 @@
     <div class="banner">
         <div class="row">
             <div class="col-3">
-                <div class="img-box-1">
-                    <img src="../img/avatar/<?=$user->avatar;?>" alt="avatar" class="rounded-circle">
-                    <h6 class="mt-2"><?=$user->name?></h6>
+                <div class="img-box-1 d-flex">
+                    <img src="../img/avatar/<?=$user->avatar;?>" alt="avatar" class="rounded-circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h6 class="ml-2 mt-4"><?=$user->name?></h6>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">
+                            <span class="fa fa-user"></span>
+                            Profile
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="fa fa-bell"></span>
+                            Notifications
+                        </a>
+                        <a class="dropdown-item" href="#">
+                        <span class="fa fa-envelope"></span>
+                            Messages
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="btn btn-sm btn-danger  ml-4 text-white" href="/security/logout">Se Deconnecter</a>
+                    </div>
                 </div>
             </div>
             <div class="col-6 text-center" id="wellcome">
