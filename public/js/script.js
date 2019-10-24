@@ -36,80 +36,33 @@ routes.forEach(item => {
       
       $(".success-message").css('display','none');
   });
-
-  $("#speciality").on("change", e => {
-    $('.doctor-details').hide("slow");
-
-    const clickedElt = $(e.target);
-    const targetElt = clickedElt.closest("#speciality");
-    speciality = targetElt.val() ;
-    $.ajax({
-      type: "GET",
-      url: "/rv/doctorsSpeciality",
-      data: { speciality: speciality},
-      cache: false,
-      success: function(result) {
-  $('#doctorSpecialityContainer li').remove();
-
   
-  if(result != "[]"){
-    const data = JSON.parse(result);
-    for (let i = 0; i < data.length; i++) {
-      const elt = data[i];
-        $('#doctorSpecialityContainer').append(displayDoctor(elt)) ;
-        
-    }
 
-    $(".doctor-item").on("click", e => {
-      const clickedElt = $(e.target);
-      const targetElt = clickedElt.closest(".doctor-item");
-      $(".doctor-item").css("background-color", "#fff");
-      targetElt.css("background-color", "#a9d9f0");
-      $.get( "/rv/getDoctorDetails",{id: targetElt.data('id')} ,function(data) {
-
-     const info = JSON.parse(data)[0];
-       appointDetails.doctor_id = info.id;
-      $('.doctor-details').hide("slow",()=>{
-        $('.doctor-details').show("slow",()=>{
-          $("#avatar").attr('src',`../img/avatar/${info.avatar}`)
-          $("#doctorName").text(info.name);
-          $('#doctorEmail').text(info.email);
-          $('#doctorPhone').text(info.phone);
-          $('#doctorDomaine').text(speciality);
-        });
-      });
-
-       numPatient();
-        
-
-      });
-    });
-  }
-
-      }
-    });
+  $(".speciality-item").on("click", e => {
+    const clickedElt = $(e.target);
+    const targetElt = clickedElt.closest(".speciality-item");
+    $(".speciality-item").removeClass('selected-spec')
+    targetElt.addClass('selected-spec');
+    $('.calendar').removeClass('activate-panel');
+   
   });
 
-function displayDoctor(data) {
-  
-  const item =
-    " <li>" +
-    '<div class="doctor-item" data-id="'+data.id+'">' +
-    '<span class="fa fa-user-md"></span>' +
-    '<div class="doctor-infos">' +
-    "<span>" +
-    data.name+
-    "</span>" +
-    "</div>" +
-    "</div>" +
-    "</li>";
 
-  return htmlToElement(item);
 
-  
-
-  
-}
+  $(".doctor-item .fa-plus").click((e)=>{
+    const clickedElt = $(e.target);
+    const targetElt = clickedElt.closest(".doctor-item .fa-plus");
+    targetElt.addClass('hide');
+    clickedElt.next(".doctor-item .fa-minus")
+    .removeClass('hide')
+    .click((e)=>{
+      targetElt.removeClass('hide');
+      let target = $(e.target).closest('.doctor-item .fa-minus');
+      target.addClass('hide');
+      target.next(".doctor-item .doctor-infos").addClass('hide')
+    })
+    clickedElt.next(".doctor-item .fa-minus").next(".doctor-item .doctor-infos").removeClass('hide')
+  })
 
 function htmlToElement(html) {
   var template = document.createElement('template');
@@ -121,7 +74,7 @@ function htmlToElement(html) {
 $('.dates .active-date').on('click',(e)=>{
   const clickedElt = $(e.target);
   const targetElt = clickedElt.closest(".dates li");
-
+   $('#time-panel').removeClass('activate-panel')
   $('.dates .active-date').removeClass('selected-date');
   targetElt.addClass('selected-date');
   let date =  targetElt.data('date');

@@ -11,7 +11,7 @@ require ROOT.DS."Utils".DS."Planning.php";
 
 class RvController extends Controller
 {
-    private $staffManager;
+    public $staffManager;
     private $appointManager;
     private $patientManager ;
     public function __construct()
@@ -35,8 +35,9 @@ class RvController extends Controller
         }
 
         $specialityManager = new SpecialityModel();
-        $specialities = $specialityManager->findSpecialityService($_SESSION['service']);
 
+        $specialities = $specialityManager->findSpecialityService($_SESSION['service']);
+        
         $calendar = new Calendar();
         $p = new Planning(8,30,17,30);
 
@@ -58,6 +59,7 @@ class RvController extends Controller
     public function doctorsSpeciality()
     {
       print_r(json_encode($this->staffManager->findDoctorSpeciality($_GET['speciality'])));
+      
       
     }
 

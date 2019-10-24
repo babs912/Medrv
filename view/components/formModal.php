@@ -1,5 +1,5 @@
-<div class="modal fade" id="patientFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="patientFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header p-1">
                 <h5 class="modal-title text-center" id="exampleModalLabel">

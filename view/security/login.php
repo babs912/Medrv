@@ -14,7 +14,7 @@
 <body>
    
    <div class="container">
-      <div class="login-panel  border">
+      <div class="login-panel">
             <form action="/security/login" class="form" method="POST" >
                <div class="form-group">
                   <label for="username">Nom d'utilisateur</label>

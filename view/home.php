@@ -2,7 +2,7 @@
 
 <div id="main-container">
        
-<div class="main-info">
+<div class="main-info bg-white p-4">
     <div class="row">
         <div class="col-sm-4">
             <div class="patient-info bg-success">

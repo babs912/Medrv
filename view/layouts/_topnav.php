@@ -1,7 +1,7 @@
 <div class="top-nav pt-5" id="humberger-menu">
-<span class="fa fa-close d-block d-md-none text-danger  float-right" id="menu-close" ></span>
+<span class="fa fa-close  text-danger " id="menu-close" ></span>
 
-    <ul class="list-unstyled p-0 mt-4">
+    <ul class="list-unstyled p-0 mt-2">
         <li class="mb-2">
             <a href="/home">
                 <span class="fa fa-home mr-2"></span>

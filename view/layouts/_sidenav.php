@@ -1,4 +1,4 @@
-<div class="side-nav d-none d-xl-block mt-5">
+<div class="side-nav d-none d-md-block h-100 ">
     <ul class="list-unstyled p-0 ">
         <li>
             <a href="/home">
@@ -7,10 +7,30 @@
             </a>
         </li>
         <li>
-            <a href="#" id="rv-new">
+                <div class="dropright">
+
+                    <a href="#" class="title" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="fa fa-book"></span><br>
-                <span class="title">Rv</span>
-            </a>
+                       
+                    <span class="title">Rv</span> 
+                        
+                    </a>
+
+                    <div class="dropdown-menu p-2">
+                        <a href="#" id="rv-new">
+                            <span class="fa fa-user-plus text-info"></span>
+                            Ajouter un rv
+                        </a>
+                        <div class="dropdown-divider"></div>
+
+                        <a href="#" id="rv-new">
+                            <span class="fa fa-list text-info"></span>
+                            Liste rv
+                        </a>
+
+                    </div>
+                </div>
+            
         </li>
         <li>
             <a href="#">
