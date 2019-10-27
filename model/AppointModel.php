@@ -23,9 +23,9 @@ class AppointModel extends Model
       
   }
 
- public function isAvailableTime($date, $time)
+ public function isAvailableTime($date, $time,$doctorId)
  {
-     $sql  = "SELECT COUNT(ap.start_time) FROM Appoint ap WHERE ap.planned_at ='".$date."' AND ap.start_time ='".$time."'";
+     $sql  = "SELECT COUNT(ap.start_time) FROM Appoint ap WHERE ap.planned_at ='".$date."' AND ap.start_time ='".$time."' AND doctor_id=".$doctorId;
      $q = $this->con->prepare($sql);
 
      $q->execute();

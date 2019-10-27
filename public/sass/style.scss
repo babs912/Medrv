@@ -3,19 +3,34 @@ body {
   padding: 0;
   margin: 0;
   background-color: #f4f4f4;
+  width: 100%;
+}
+.modal-body{
+  background-color: #ebebeb;
+
 }
 
-
+.header{
+  padding: .8em;
+   width: 100%;
+   font-size: 22px;
+   font-weight: bold;
+   color: #fff;
+   background-color: #2c9bdb;
+  .fa
+  {
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+  }
+}
 p{
   font-size: 18px!important;
 }
 #side-menu-container{
   height: 100vh;
 }
-.bg-white{
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
+
 .main-content{
   padding-left: .3em;
   padding-right: 2em;
@@ -146,6 +161,10 @@ cursor: none ;
   background-color: #fff;
   font-size: .8em;
   padding-left: 2em;
+  span{
+   display: block;
+   line-height: 1.2em;
+  }
 
 }
 .main-info {
@@ -234,12 +253,12 @@ cursor: none ;
   }
 }
 .selected-spec{
-  border-color: #f38429 !important;
+  background-color: #40aff0 !important;
 }
 .speciality{
-  background-color: #f6f6f6;
+  background-color: #e8f6fa;
   padding: .5em;
-  height: calc(100vh - 240px);
+  height: calc(100vh - 180px);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: .5em;
@@ -254,32 +273,28 @@ cursor: none ;
   outline: 1px solid slategrey;
   }
   .speciality-item{
-    transition: border-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
     border: 4px solid rgba(0, 0, 0, 0);
-    &:hover{
-       border-color: #f38429;
-
-    }
-    background-color: #fff;
+    background-color: rgb(7, 86, 88);
     padding-bottom: .3em;
     margin-bottom: .3em;
     
     cursor: pointer;
+    &:hover{
+      background-color: #40aff0;
+    }
 
     .doctor-item{
       padding: .3em;
-      border: 1px solid #cccccc;
-      transition: background-color .5s ease-out;
-      &:hover{
-        background-color: #a9daf7d7;
-      }
+      background-color: #fff;
+      
     }
     
   }
   .speciality-name{
     padding: .8em;
-    background-color: #2c9bdb;
-    color: #fff;
+   color: #fff;
+
     font-weight: bold;
   }
 }
@@ -290,6 +305,9 @@ div#calendar {
   padding: 0px;
   width: 100%;
   font-family: Helvetica, "Times New Roman", Times, serif;
+  background-color: #ffffff;
+
+
 }
 
 div#calendar div.box {
@@ -297,18 +315,14 @@ div#calendar div.box {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 40px;
-  background-color: #343066;
   text-align: center;
-  color: #fff;
+  color: rgb(190, 190, 190);
   font-weight: bold;
-  padding-top: 0.3em;
 }
 
 
 /*******************************Calendar Content Cells*********************************/
 div#calendar div.box-content {
-  border: 1px solid #302e49;
   border-top: none;
 }
 
@@ -319,10 +333,9 @@ div#calendar ul{
 div#calendar ul.label {
   float: left;
   margin: 0px;
-  padding: 0px;
-  margin-top: 5px;
+  margin-top: -10px;
   margin-left: 5px;
-  padding-bottom: 1em;
+  padding-bottom: .4em;
 }
 
 div#calendar ul.label li {
@@ -332,12 +345,12 @@ div#calendar ul.label li {
   float: left;
   list-style-type: none;
   width: 13%;
-  height: 20px;
+  height: 15px;
   line-height: 280%;
   vertical-align: middle;
   text-align: center;
   color: rgb(245, 125, 46);
-  font-size: 16px;
+  font-size: 12px;
   background-color: transparent;
 }
 
@@ -360,12 +373,12 @@ div#calendar ul.dates li {
   float: left;
   list-style-type: none;
   width: 13%;
-  height: 13%;
+  height: 11%;
   font-size: 16px;
   transition: background-color 0.5s ease-out;
   color: #fff;
   text-align: center;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 :focus {
@@ -379,11 +392,48 @@ div.clear {
 
 
 /*******************************LOGIN*********************************/
-
-.login-panel{
-  margin-top: 8%;
-  padding: 2em;
-  background-color: #fff;
+.login-page{
+  background-image: url('../img/bg/bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  .cover{
+    position: absolute;
+    background-color: #00000086;
+    width: 100%;
+  height: 100%;
+  }
+  .wellcome-text{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 14%;
+    left: 28%;
+    h1{
+      font-weight: bolder;
+      font-size: 5em;
+      color: rgb(51, 193, 236);
+    }
+    h5{
+      color: #fff;
+    }
+  }
+  
+  .login-panel{
+    .fa{
+      font-size: 42px;
+      color: #faa341;
+    }
+    position: absolute;
+    margin-top: 8%;
+    padding: 2em;
+    background-color: #fff;
+    z-index: 180;
+  }
+  
 }
 
 /*************************Message Flash*******************************/
@@ -448,11 +498,30 @@ $success__secondary: #B8BABB;
 
 .patient-list-panel {
 
+  .patient-item{
+    background-color:white;
+    cursor: pointer;
+    &:hover{
+      background-color: rgb(160, 235, 253);
+    }
+  }
+
   height: calc(100vh - 120px);
   overflow-y: scroll;
-  background-color: #40aff0;
   border-radius: 4px;
   font-size: .7em;
+  &::-webkit-scrollbar {
+    width: .5em;
+  }
+  
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  }
   .fa{
   font-size: .9em;
 
@@ -483,20 +552,41 @@ $success__secondary: #B8BABB;
   
 }
 .active-time{
-   background-color: #5fdcf1;
+   transition: background-color .2s ease-out;
+   background-color: #5fdbf1b0;
+   &:hover{
+      background-color: #257583b0;
+   }
    cursor: pointer;
 }
 .inactive-time{
-   background-color: rgb(241, 121, 147);
+   background-color: rgba(241, 121, 147, 0.76);
 }
  .times{
+    width: 100%;
     height: calc(100vh - 240px);
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: .5em;
+    }
+    
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    }
     table{
       width: 98%;
+      #hour{
+        width: 85%;
+      }
       td{
+        padding: .5em;
         font-size: 1em;
-        border: 1px solid #B8BABB;
+        border: 1px solid rgb(211, 212, 212);
       }
     }
  }

@@ -1,5 +1,6 @@
 <?php
  require  ACCESS;
+ require ROOT.DS.'form'.DS.'PatientForm.php';
 class HomeController extends  Controller
 {
    public $layout = "base";
@@ -11,6 +12,7 @@ class HomeController extends  Controller
     public function index()
     {
         
+
         $this->render('home', []);
     }
 }

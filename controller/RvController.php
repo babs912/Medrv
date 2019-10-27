@@ -37,6 +37,9 @@ class RvController extends Controller
         $specialityManager = new SpecialityModel();
 
         $specialities = $specialityManager->findSpecialityService($_SESSION['service']);
+        $patientManager = new PatientModel();
+        $rvs = $patientManager->getAll();
+        
         
         $calendar = new Calendar();
         $p = new Planning(8,30,17,30);
@@ -45,7 +48,8 @@ class RvController extends Controller
         [
             'calendar' => $calendar->show(), 
             'specialities' => $specialities,
-            'planning' => $p->getPlanning()
+            'planning' => $p->getPlanning(),
+            'rvs' => $rvs
         ]);
     }
 
@@ -82,7 +86,7 @@ class RvController extends Controller
 
     public function isAvailableTime()
     {
-        if($this->appointManager->isAvailableTime($_POST['date'],$_POST['time'])  == 1)
+        if($this->appointManager->isAvailableTime($_GET['date'],$_GET['time'],$_GET['doctorId'])  == 1)
         {
            echo 1;
         }else{

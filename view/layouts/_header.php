@@ -2,15 +2,6 @@
   $user = json_decode($_SESSION['user'])[0];
 ?>
 <header>
-    <nav class="navbar">
-        <a href="/home" class="brand">Medrv</a>
-        <ul class="nav d-none d-md-flex">
-            <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-envelope"></span></a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-bell"></span></a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-user"></span></a></li>
-        </ul>
-        <span class="fa fa-bars d-block d-md-none" id="menu-bars"></span>
-    </nav>
     <?php include(ROOT.DS.'view'.DS.'layouts'.DS.'_topnav.php'); ?>
     <div class="banner">
         <div class="row">
@@ -37,8 +28,7 @@
                 </div>
             </div>
             <div class="col-6 text-center" id="wellcome">
-                <h1 class="text-white font-weight-bold">Bienvenue sur Medrv</h1>
-                <h5 class="text-primary font-weight-bold">Service <?= $_SESSION['service'] ?></h5>
+                <h1 class="text-white font-weight-bold mt-2"><?= $_SESSION['service'] ?></h1>
             </div>
             <div class="col-3">
                 <div class="img-box-2">

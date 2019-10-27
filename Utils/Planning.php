@@ -51,7 +51,7 @@ class Planning
 
     public function getPlanning()
     {
-        $html = '<table><tr><th id="hour">Heures</th><th id="available"> Disponiblite</th></tr>';
+        $html = '<table><tr><th id="hour"></th><th id="available"></th></tr>';
         
         for($h = $this->startHours, $m = $this->startMinutes ; $h < $this->endHours; $m+=15)
         {
@@ -64,8 +64,8 @@ class Planning
             if($h <= 13  || $h >= 15)
             {
                 $time = $this->formatTime($h,$m);
-                $html.= "<tr><td>".$time."</td>";
-                $html.= '<td class="load-modal" data-time="'.$time.'"></td></tr>';
+                $html.= '<tr><td class="time-label">'.$time.'</td>';
+                $html.= '<td class="planning-time" data-time="'.$time.'"></td></tr>';
 
             }
 
