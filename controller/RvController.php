@@ -49,7 +49,8 @@ class RvController extends Controller
             'calendar' => $calendar->show(), 
             'specialities' => $specialities,
             'planning' => $p->getPlanning(),
-            'rvs' => $rvs
+            'rvs' => $rvs,
+            'patients' => $patientManager->findAll()
         ]);
     }
 
@@ -93,5 +94,15 @@ class RvController extends Controller
             echo 0;
         }
 
+    }
+
+    public function patientById()
+    {
+       print_r(json_encode($this->patientManager->patientById($_GET['patientId'])));
+    }
+
+    public function searchWithPhone()
+    {
+        print_r(json_encode($this->patientManager->searchWithPhone($_GET['phone'])));
     }
 }

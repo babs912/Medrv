@@ -108,7 +108,20 @@ class Model
     {
       $this->con->exec("DELETE * ".$this->model." WHERE id=".$id);
     }
+    
 
+    public function searchWith(string $property, $value)
+    {
+        $sql = "SELECT * FROM ".$this->model." WHERE MATCH(".$property.") AGAINST('".$value."')";
+        
+
+        $q = $this->con->prepare($sql);
+
+       $q->execute();
+
+       return $q->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 
 
 }

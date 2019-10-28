@@ -39,8 +39,16 @@ class PatientModel extends Model
         
     
     }
-    
 
+   public function patientById($id)
+    {
+      return $this->findBy('id',$id);
+    }
+
+    public function searchWithPhone(string $phone)
+    {
+      return  $this->searchWith('phone',$phone);
+    }
 
 
    

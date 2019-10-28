@@ -1,6 +1,7 @@
 $(function() {
   var appointDetails = { };
   var date = GetTodayDate();
+  var patientInfo = { };
 
   
 
@@ -50,6 +51,7 @@ routes.forEach(item => {
     let spec = targetElt.attr('value');
 
     var doctorId = $(`#${spec}`).data('id');
+    appointDetails.doctor_id = doctorId;
     $('.dates .active-date').on('click',(e)=>{
       const clickedElt = $(e.target);
       const targetElt = clickedElt.closest(".dates li");
@@ -62,7 +64,6 @@ routes.forEach(item => {
     })
 
     displayTime(date,doctorId);
-    console.log(date);
 
 
 
@@ -103,7 +104,7 @@ function htmlToElement(html) {
 $('.dates .active-date').each((e)=>{
   if ($('.dates .active-date')[e].getAttribute('data-date') == GetTodayDate())
   {
-    targetElt.addClass('selected-date');
+    console.log($('.dates .active-date')[e].classList = `active-date start  selected-date`)
   }
 })
 
@@ -119,8 +120,8 @@ $(".side-nav ul li a").click((e)=>{
 })
 
 
-$('#add-appoint').on('click',()=>{
-  
+$('#add-appoint').on('click',(e)=>{
+  e.preventDefault();
   const data = $('#patientForm').serializeArray().reduce((obj,item)=>{
       obj[item.name] = item.value;
       return obj;
@@ -133,6 +134,7 @@ $('#add-appoint').on('click',()=>{
   }
   ,
   (data)=>{
+    console.log(data);
     if(data == 1){
       $('.modal-body').append(htmlToElement(flashMessage()));
       $("#patientForm").css('display',"none");
@@ -202,7 +204,10 @@ $("#menu-close").click((e)=>{
   return currentDate;
 }
 
-
+$('.planning-time').click((e)=>{
+  var time = $(e.target).closest('.planning-time').data('time');
+  appointDetails.start_time =time;
+})
  function displayTime(date,doctorId)
  {
   $('.planning-time').each((e)=>{
@@ -211,7 +216,7 @@ $("#menu-close").click((e)=>{
      {
        const elt = $('.planning-time')[e];
        const time = elt.getAttribute('data-time');
-      const targetElt =  $(`[data-time="${time}"]`);
+       const targetElt =  $(`[data-time="${time}"]`);
         targetElt.html('');
         targetElt.removeClass('active-time');
         targetElt.removeClass('inactive-time');
@@ -239,6 +244,41 @@ $("#menu-close").click((e)=>{
      
    })
  }
+
+ $('.patient-item').click((e)=>{
+  
+  let targetElt = $(e.target).closest('.patient-item');
+  let patientId = targetElt.data('id');
+  $('.patient-item').removeClass('selected-patient')
+  targetElt.addClass('selected-patient')
+
+  $.get('/rv/patientById',{patientId:patientId},(result)=>{
+    let patient = JSON.parse(result)[0];
+    $('.patient-name').text(patient.first_name+ " " + patient.last_name);
+    $('.patient-gender').text((patient.gender == "H")? "Homme" : "Femme");
+    $('.patient-age').text(patient.age + "Ans");
+    $('.patient-email').text(patient.email);
+    $('.patient-phone').text(patient.phone);
+    $('.patient-address').text(patient.address);
+
+  $('.patient-details').removeClass('hide');
+   
+
+  })
+ })
+
+ $('#search-phone').on('keyup',(e)=>{
+  let targetElt = $(e.target).closest('#search-phone');
+  let val = targetElt.val();
+  if(val == null || val == " " || val.length <= 2)
+  {
+    console.log('not macth');
+  }else{
+    $.get('/rv/searchWithPhone',{phone: val},(result)=>{
+        console.log(result);
+    })
+  }
+ })
 
 });
 

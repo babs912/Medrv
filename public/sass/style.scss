@@ -9,6 +9,11 @@ body {
   background-color: #ebebeb;
 
 }
+.fa-close{
+  font-size: 20px;
+  font-weight: lighter;
+  cursor: pointer;
+}
 
 .header{
   padding: .8em;
@@ -208,6 +213,43 @@ cursor: none ;
 
   span {
     color: rgb(246, 115, 115);
+  }
+}
+#fined-patient
+{
+  max-height: 140px;
+  overflow-y: scroll;
+  .patient-item{
+    padding: .4em;
+    margin-bottom: 2px;
+    transition: background-color .5s ease-out;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  &:hover{
+    background-color: #92d2f7;
+  }
+
+  }
+  
+}
+.selected-patient{
+  background-color: #92d2f7 !important;
+}
+.patient-details{
+  background-color: #f8f8f8;
+  max-height: 240px;
+  &::before{
+    content: "";
+  }
+  .patientProfile{
+    border: 2px solid #fff;
+    text-align: center;
+
+    img{
+      width: 80px;
+      height: 80px;
+    }
+   
   }
 }
 

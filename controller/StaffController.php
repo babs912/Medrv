@@ -32,7 +32,6 @@ class StaffController extends  Controller
     }
 
     public function new () {
-
         if(isset($_POST['role_id'])){
             $this->staffManager->create($_POST);
           }
