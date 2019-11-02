@@ -1,3 +1,91 @@
+//sets
+
+$success__primary: #3DC480;
+$success__secondary: #B8BABB;
+$color_primary: #2c9bdb;
+
+.right {
+  float: right;
+  position: relative;
+  top: 6px;
+}
+
+.top {
+  margin-top: -30px;
+}
+
+#notebooks {
+  background: whitesmoke;
+  position: relative;
+  
+  margin-top: 5px;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 white;
+  max-height: 270px;
+  ul {
+    margin: 0 auto;
+    padding: 0;
+    max-height: 210px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 5px 0 5px;
+    border-left: none;
+    border-right: none;
+  }
+  
+  li {
+    list-style: none;
+    transition: background-color .5s ;
+    background-color: rgba(0, 0, 0, 0.05);
+    background-image: 
+      linear-gradient(
+        90deg,
+        #FFD32E 10px,
+        #EEE 10px,
+        #EEE 11px,
+        transparent 11px);
+    padding: 10px 15px 10px 25px;
+    border: 1px solid #CCC;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+    &:hover{
+      background-color: rgba(0, 0, 0, 0.301);
+    }
+  }
+}
+
+
+
+#query {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 19px;
+  padding: 5px;
+  font-family: calibri light;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+  &
+:focus {
+   border: 1px solid #FFD32E;
+   box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
+   outline: none;
+ }
+}
+
+
+
+
+
+
 html,
 body {
   padding: 0;
@@ -7,7 +95,25 @@ body {
 }
 .modal-body{
   background-color: #ebebeb;
+  min-height: 640px;
 
+}
+.text-primary{
+  font-size: 36px;
+}
+.profile{
+  width: 42px;
+  height: 42px;
+}
+.btn-outline-primary,.btn-outline-danger{
+  
+    &:hover{
+      .fa{
+        color: #fff;
+      }
+     
+    }
+  
 }
 .fa-close{
   font-size: 20px;
@@ -37,8 +143,7 @@ p{
 }
 
 .main-content{
-  padding-left: .3em;
-  padding-right: 2em;
+  margin-top: -2em;
 }
 header {
   nav {
@@ -50,10 +155,7 @@ header {
     box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
   }
 }
-.fa {
-  font-size: 16px;
-  color: rgb(72, 179, 228);
-}
+
 .inactive-date{
 background-color:red !important;
 cursor: none ;
@@ -139,6 +241,17 @@ cursor: none ;
 
 }
 
+.fa{
+  color: #40aff0;
+}
+
+
+.passed-date{
+  background-color: #ff9823;
+}
+
+
+
 .banner {
 
   position: relative;
@@ -217,9 +330,9 @@ cursor: none ;
 }
 #fined-patient
 {
-  max-height: 140px;
+  max-height: 240px;
   overflow-y: scroll;
-  .patient-item{
+  .patient-item,.patient-item-search{
     padding: .4em;
     margin-bottom: 2px;
     transition: background-color .5s ease-out;
@@ -246,8 +359,8 @@ cursor: none ;
     text-align: center;
 
     img{
-      width: 80px;
-      height: 80px;
+      width: 95%;
+      height: 95%;
     }
    
   }
@@ -300,7 +413,7 @@ cursor: none ;
 .speciality{
   background-color: #e8f6fa;
   padding: .5em;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 240px);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: .5em;
@@ -317,7 +430,7 @@ cursor: none ;
   .speciality-item{
     transition: background-color 0.5s ease-out;
     border: 4px solid rgba(0, 0, 0, 0);
-    background-color: rgb(7, 86, 88);
+    background-color: rgb(243, 243, 243);
     padding-bottom: .3em;
     margin-bottom: .3em;
     
@@ -335,7 +448,7 @@ cursor: none ;
   }
   .speciality-name{
     padding: .8em;
-   color: #fff;
+  
 
     font-weight: bold;
   }
@@ -480,36 +593,28 @@ div.clear {
 
 /*************************Message Flash*******************************/
 
-$success__primary: #3DC480;
-$success__secondary: #B8BABB;
 
-.success-message {
+
+.success-flash {
     text-align: center;
-    
-    max-width: 500px;
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding: 2em;
+    position: relative;
+    margin-top: 12%;
+    margin-left: 38%;
+    width: 25%;
+    background-color:#fff;
+    
 }
 
-.success-message__icon {
+.success-flash__icon {
     max-width: 75px;
 }
 
-.success-message__title {
-    color: $success__primary;
-    transform: translateY(25px);
-    opacity: 1;
-    transition: all 200ms ease;
-    
-    .active & {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
-.success-message__content {
+
+
+.success-flash__content {
     color: $success__secondary;
     transform: translateY(25px);
     opacity: 1;
@@ -604,9 +709,12 @@ $success__secondary: #B8BABB;
 .inactive-time{
    background-color: rgba(241, 121, 147, 0.76);
 }
+
+
+
  .times{
     width: 100%;
-    height: calc(100vh - 240px);
+    height: 0;
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: .5em;
@@ -674,6 +782,7 @@ $success__secondary: #B8BABB;
  }
 
 @media (min-width: 768px) {
+
   
   #wellcome{
     h1{

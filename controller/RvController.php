@@ -14,12 +14,14 @@ class RvController extends Controller
     public $staffManager;
     private $appointManager;
     private $patientManager ;
+    public $layout = "base";
+     
     public function __construct()
     {
         $this->staffManager = new StaffModel();
         $this->appointManager = new AppointModel();
         $this->patientManager = new PatientModel();
-        parent::__construct();
+        parent::__construct($this->layout);
 
 
     }
@@ -28,6 +30,7 @@ class RvController extends Controller
     {
         
         if(!empty($_POST)){
+
             if(isset($_POST['appoint'])){
               print_r($this->patientManager->add($_POST));
             }
@@ -50,7 +53,8 @@ class RvController extends Controller
             'specialities' => $specialities,
             'planning' => $p->getPlanning(),
             'rvs' => $rvs,
-            'patients' => $patientManager->findAll()
+            'patients' => $patientManager->findAll(),
+            'errors'=> ['email'=>"email n'est pas valide"]
         ]);
     }
 

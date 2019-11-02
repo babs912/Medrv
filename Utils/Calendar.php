@@ -19,7 +19,11 @@ class Calendar
 
     public $active_date = "active-date";
     public $inactive_date = "inactive-date";
+    public $passed_date  = "passed-date";
 
+    public $blankDays = [6,7,13,14,20,21,27,28,34];
+    
+    
 
     /********************* PUBLIC **********************/
 
@@ -109,10 +113,20 @@ class Calendar
         }
        
        $li = '<li data-date="' . $this->currentDate . '" class=" ';
-        if( in_array($cellNumber, [6,7,13,14,20,21,27,28]) == 1 || $this->currentDate == NULL){
+       if($cellNumber/7 > 5 ){
+           array_pop($this->blankDays,34);
+       }
+        if( in_array($cellNumber, $this->blankDays) == 1 || $this->currentDate == NULL){
            $li.= $this->inactive_date;
         }else{
-           $li.= $this->active_date;
+
+           
+            if((int) $cellNumber < (int)date('d')+1 )
+            {
+                $li.=$this->passed_date;
+            }else{
+                $li.= $this->active_date;
+            }
 
         }
 

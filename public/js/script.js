@@ -1,73 +1,50 @@
 $(function() {
   var appointDetails = { };
   var date = GetTodayDate();
-  var patientInfo = { };
+  var doctorId = 0;
 
-  
+  $('.patient-item-search').hide();
+  $('.success-flash').hide();
+  appointDetails.planned_at = date;
 
-
-
-  var routes = 
-  [
-    {
-      url: "/rv/new",
-      link: "rv-new"
-    },
-    {
-      url: "/help/index",
-      link: "help"
-    }
-]
-
-routes.forEach(item => {
    
-    $("#"+item.link+"").click((e)=>{
-      e.preventDefault();
-      $('#loading').css({display:"block"});
-      
-     $.ajax({
-       type: "GET",
-       url: item.url,
-       success: (data)=>{
-      $('#loading').css({display:"none"});
-         $("#main-container").html(data);
-       }
-     })
-    })
-});
   
-  $('.load-modal').on('click',(e)=>{
-      $("#patientForm").css('display',"block").trigger('reset');
-      
-      $(".success-message").css('display','none');
-  });
   
+ 
+  
+  $(`[data-date='${GetTodayDate()}']`).addClass('selected-date');
+  appointDetails.planned_at = $(`[data-date='${GetTodayDate()}']`).data('date');
+ 
+ 
 
   $(".speciality-item").on("click", e => {
+    
     const clickedElt = $(e.target);
     const targetElt = clickedElt.closest(".speciality-item");
     $(".speciality-item").removeClass('selected-spec')
     targetElt.addClass('selected-spec');
     let spec = targetElt.attr('value');
-
-    var doctorId = $(`#${spec}`).data('id');
+     doctorId = $(`#${spec}`).data('id');
+    $('.times').removeClass('hide').animate({height:'460px'},1000);
+    displayTime(date,doctorId); 
     appointDetails.doctor_id = doctorId;
-    $('.dates .active-date').on('click',(e)=>{
-      const clickedElt = $(e.target);
-      const targetElt = clickedElt.closest(".dates li");
-      $('.dates .active-date').removeClass('selected-date');
-      targetElt.addClass('selected-date');
-      date =  targetElt.data('date');
-      appointDetails.planned_at = date;
-    
-       displayTime(date,doctorId);
-    })
-
-    displayTime(date,doctorId);
-
-
 
   });
+
+
+  $('.dates .active-date').on('click',(e)=>{
+    const clickedElt = $(e.target);
+    const targetElt = clickedElt.closest(".dates li");
+    
+      $('.dates .active-date').removeClass('selected-date');
+      targetElt.addClass('selected-date');
+    
+    
+    date =  targetElt.data('date');
+    appointDetails.planned_at = date;
+  
+     displayTime(date,doctorId);
+  }) 
 
 
 
@@ -101,12 +78,19 @@ function htmlToElement(html) {
 }
 
 
-$('.dates .active-date').each((e)=>{
-  if ($('.dates .active-date')[e].getAttribute('data-date') == GetTodayDate())
-  {
-    console.log($('.dates .active-date')[e].classList = `active-date start  selected-date`)
+$("#contact").on('click', function() {
+  if($(this).hasClass("selected")) {
+      deselect();               
+  } else {
+      $(this).addClass("selected");
+      $.get(this.href, function(data) {
+          $(".pop").html(data).slideFadeToggle(function() { 
+              $("input[type=text]:first").focus();
+          });
+      })
   }
-})
+  return false;
+});
 
 
 
@@ -134,18 +118,15 @@ $('#add-appoint').on('click',(e)=>{
   }
   ,
   (data)=>{
-    console.log(data);
     if(data == 1){
-      $('.modal-body').append(htmlToElement(flashMessage()));
-      $("#patientForm").css('display',"none");
-
-      if($(".modal-body").hasClass('active')) {
-        document.body.classList.remove('active');
-        return;
-    }
-    $(".modal-body").addClass('active');
-    }else{
-      $('#errors').append(htmlToElement(data));
+     $('.register-patient').hide();
+      $('.success-flash').show();
+      $(`[data-time='${appointDetails.start_time}']`)
+      .removeClass('active-time')
+      .addClass('inactive-time')
+      .attr('data-toggle',"")
+      .attr('data-target',"")
+      .html("")
     }
   })
   
@@ -153,60 +134,26 @@ $('#add-appoint').on('click',(e)=>{
 
 
 
-function flashMessage(){
 
-  return '<div class="success-message">'+
-         '<svg viewBox="0 0 76 76" class="success-message__icon icon-checkmark">'+
-          '<circle cx="38" cy="38" r="36"/>'+
-          '<path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M17.7,40.9l10.9,10.9l28.7-28.7"/>'+
-      "</svg>"+
-      '<h1 class="success-message__title">Enregistre avec succes</h1>'+
-      '<div class="success-message__content">'+
-          "<p>Merci d'avoir utilise Medrv</p>"+
-      "</div>"+
-    "</div>";
 
-}
-
-// Toggle menu
-
-$('#menu-bars').on('click',(e)=>{
-  const clickedElt = $(e.target);
-  const targetElt = clickedElt.closest("#menu-bars");
-  targetElt.hide();
-  e.preventDefault();
-
-$("#humberger-menu").show().animate({
-  marginRight: 0
-})
-   
-})
-
-$("#menu-close").click((e)=>{
-  const clickedElt = $(e.target);
-  const targetElt = clickedElt.closest("#menu-bars");
-  e.preventDefault();
-  $("#humberger-menu")
-  .animate({
-    marginRight: "-60%",
-  },()=>{$('#humberger-menu').hide()})
-  
-})
 
 
  function GetTodayDate() {
   var tdate = new Date();
-  var dd = tdate.getDate(); //yields day
-  var MM = tdate.getMonth(); //yields month
+  var dd = (tdate.getDate() < 10)? "0"+tdate.getDate(): tdate.getDate(); //yields day
+  var MM = (tdate.getMonth() < 10)? "0"+tdate.getMonth(): tdate.getMonth(); //yields month
   var yyyy = tdate.getFullYear(); //yields year
-  var currentDate=   yyyy + "-" +( MM+1) + "-" + dd;
 
-  return currentDate;
+  return    yyyy + "-" +( MM+1) + "-" + dd;
+
 }
 
 $('.planning-time').click((e)=>{
   var time = $(e.target).closest('.planning-time').data('time');
   appointDetails.start_time =time;
+  $('.register-patient').removeClass('hide').show();
+  $('.success-flash').addClass('hide').hide();
+
 })
  function displayTime(date,doctorId)
  {
@@ -232,11 +179,9 @@ $('.planning-time').click((e)=>{
               targetElt.addClass("active-time");
               targetElt.attr('data-toggle',"modal");
               targetElt.attr('data-target',"#patientFormModal");
-              targetElt.attr('data-whatever',"@getbootstrap");
         
             }else{
               targetElt.addClass("inactive-time");
-              targetElt.html(htmlToElement('<span class="fa fa-close text-white"></span>'))
             }
           })
         }
@@ -262,23 +207,68 @@ $('.planning-time').click((e)=>{
     $('.patient-address').text(patient.address);
 
   $('.patient-details').removeClass('hide');
+  $('#searched-appoint').click((e)=>{
+    if(patient.id != null)
+    {
+      appointDetails.patient_id = patient.id
+      $.post('/rv/new',{appoint: appointDetails},(result)=>{
+        if(result == 1)
+        {
+          $('.register-patient').hide();
+          $('.success-flash').show();
+          $(`[data-time='${appointDetails.start_time}']`)
+          .removeClass('active-time')
+          .addClass('inactive-time')
+          .attr('data-toggle',"")
+          .attr('data-target',"")
+          .html("")
+        
+        }
+        
+      })
+    }
+  })
    
 
   })
  })
+  $('#closePatientFormModal').click(()=>{
+    $('#patientFormModal').hide();
+    $('.modal-backdrop').hide();
+  })
 
  $('#search-phone').on('keyup',(e)=>{
   let targetElt = $(e.target).closest('#search-phone');
   let val = targetElt.val();
   if(val == null || val == " " || val.length <= 2)
   {
-    console.log('not macth');
+    if($('.patient-item').hasClass('hide'))
+    {
+      $('.patient-item').removeClass('hide');
+    }
   }else{
     $.get('/rv/searchWithPhone',{phone: val},(result)=>{
-        console.log(result);
+      let patient = JSON.parse(result)[0];
+       displaySearchResult(patient);
     })
   }
  })
+
+  function  displaySearchResult(result) {
+    if(result != null)
+    {
+      $('.patient-item').hide();
+       $('.fined-phone').text((result.phone));
+       $('.fined-email').text((result.email));
+       $('.patient-item-search').attr('data-id',result.id)
+       $('.patient-item-search').show();
+    }else{
+     $('.patient-item').show();
+     $('.patient-item-search').hide();
+    }
+  }
+
+  
 
 });
 

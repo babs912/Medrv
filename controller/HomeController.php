@@ -1,18 +1,16 @@
 <?php
  require  ACCESS;
- require ROOT.DS.'form'.DS.'PatientForm.php';
-class HomeController extends  Controller
+ 
+class HomeController extends Controller 
 {
-   public $layout = "base";
+    public $layout = "base";
     public function __construct()
     {
-       parent::__construct($this->layout) ;
+        parent::__construct($this->layout);
     }
-    
-    public function index()
+    public function index ()
     {
-        
-
-        $this->render('home', []);
+        $this->render("home",[]);
     }
 }
+ ?>

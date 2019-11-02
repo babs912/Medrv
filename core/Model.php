@@ -17,7 +17,7 @@ class Model
    
     public function findAll(?array $options = null)
     {
-        $sql = "SELECT * FROM ".$this->model." ";
+        $sql = "SELECT * FROM  ".$this->model." ";
         if(!empty($options['cond'])){
             $sql.=" WHERE ";
             $cond = $options['cond'];

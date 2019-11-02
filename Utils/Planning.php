@@ -11,11 +11,11 @@ class Planning
     public function __construct($startH,$startM, $endH, $endM)
     {
         if($startH < 0  || $startH > 23 || $endH < 0  || $endH > 23){
-            echo "time invalite";
+            echo "invalid time";
            return false;
         }
         if($startM < 0 || $startM > 60 || $endM < 0 || $endM > 60){
-           echo "time invalite";
+           echo "invalid time";
            return false;
         }
         if($startH == null)

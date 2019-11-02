@@ -9,6 +9,9 @@ class Router
         if($url == '/register'){
             $url = 'security/register';
         }
+        if($url == null){
+            $url = '/rv/new';
+        }
 
         $url = trim($url, '/');
         $params = explode('/', $url);

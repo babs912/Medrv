@@ -2,9 +2,12 @@
 class PatientModel extends Model
 {
     var $model = 'Patient';
+    private $appointManager;
     public function __construct()
     {
         parent::__construct($this->model);
+        $this->appointManager = new AppointModel();
+
     }
 
 
@@ -24,17 +27,20 @@ class PatientModel extends Model
     }
 
     public function add ($data){
-        $patient = $data['patient'];
-        if($this->create($patient) == 1)
-        {
-            $patentId =  (int) $this->con->lastInsertId();
-          
-         $data['appoint'] += ['patient_id'=>$patentId];
 
-         
-         $appointManager = new AppointModel();
-         return $appointManager->add($data['appoint']);
+        if(isset($data['appoint']['patient_id'])){
+          return $this->appointManager->add($data['appoint']);
+        }else{
+            $patient = $data['patient'];
+
+            if($this->create($patient) == 1)
+            {
+                $patentId =  (int) $this->con->lastInsertId();
+                $data['appoint'] += ['patient_id'=>$patentId];
+                return $this->appointManager->add($data['appoint']);
+            }
         }
+       
 
         
     
