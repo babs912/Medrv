@@ -17,8 +17,7 @@
                                <div class="doctor-item mx-2 mt-1">
                                     <input checked type="radio" data-id="<?=$doctor['id']?>" id="<?=$speciality->id?>" >
                                     <span class="fa fa-user-md"></span>
-                                    <span><?=$doctor['name'];?></span>
-                                    <span class="fa fa-plus float-right" data-id="<?=$doctor['id']?>"></span>
+                                    <span><?=$doctor['first_name'].' '.$doctor['last_name'];?></span>
                                     <span class="fa fa-minus float-right hide"></span>
                                     <div class="doctor-infos hide border-top mt-1 py-1">
                                         <span id="email-<?=$doctor['id']?>"></span>
@@ -60,10 +59,6 @@
             
         </div>
     </div>
-</div>
-<div>
-    <div class="messagepop pop"></div> 
-    <a href="/contact" id="contact">Contact Us</a>
 </div>
 <?php require ROOT . DS . 'view' . DS . 'components' . DS . 'formModal.php'; ?>
 <script src="../js/script.js"></script>

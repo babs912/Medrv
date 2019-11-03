@@ -4,6 +4,15 @@ $success__primary: #3DC480;
 $success__secondary: #B8BABB;
 $color_primary: #2c9bdb;
 
+.modal-full {
+
+  min-width: 95%;
+  margin: auto;
+}
+
+.modal-full .modal-content {
+  min-height: 100vh;
+}
 .right {
   float: right;
   position: relative;
@@ -13,6 +22,8 @@ $color_primary: #2c9bdb;
 .top {
   margin-top: -30px;
 }
+
+
 
 #notebooks {
   background: whitesmoke;

@@ -112,15 +112,35 @@ class Model
 
     public function searchWith(string $property, $value)
     {
-        $sql = "SELECT * FROM ".$this->model." WHERE MATCH(".$property.") AGAINST('".$value."')";
-        
-
+        $sql = "SELECT * FROM `".$this->model."` WHERE `".$property."` like :searchVal";
         $q = $this->con->prepare($sql);
+        $val = "%$value%";
+        $q->bindParam(':searchVal', $val , PDO::PARAM_STR);   
+        $q->execute();
 
-       $q->execute();
+        $Count = $q->rowCount(); 
+        //echo " Total Records Count : $Count .<br>" ;
+                    
+        $result = [];
+        if ($Count  > 0){
+            while($data=$q->fetch(PDO::FETCH_ASSOC)) {   
+                $result [] = $data;
+            }
+            return $result;
+        }
+    }
 
-       return $q->fetchAll(PDO::FETCH_ASSOC);
+    public function is_exist($params)
+    {
+       $sql = "SELECT * FROM ".$this->model." WHERE ";
 
+       foreach ($params as $k => $v) {
+           $sql.= $k." = ".$v." AND ";
+       }
+
+       $q = $this->con->prepare(trim($sql," AND "));
+
+      return $q->fetchColumn();
     }
 
 

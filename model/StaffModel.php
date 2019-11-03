@@ -11,7 +11,7 @@ class StaffModel extends Model
 
     public function findDoctorSpeciality($speciality)
     {
-        $sql = "SELECT s.id, s.name FROM Staff s
+        $sql = "SELECT s.id, s.first_name, s.last_name FROM Staff s
         INNER JOIN Speciality_Staff
         ON (Speciality_Staff.staff_id = s.id)
         INNER JOIN Speciality 

@@ -77,25 +77,6 @@ function htmlToElement(html) {
   return template.content.firstChild;
 }
 
-
-$("#contact").on('click', function() {
-  if($(this).hasClass("selected")) {
-      deselect();               
-  } else {
-      $(this).addClass("selected");
-      $.get(this.href, function(data) {
-          $(".pop").html(data).slideFadeToggle(function() { 
-              $("input[type=text]:first").focus();
-          });
-      })
-  }
-  return false;
-});
-
-
-
-
-
 $(".side-nav ul li a").click((e)=>{
   const clickedElt = $(e.target);
   const targetElt = clickedElt.closest(".side-nav ul li a");
@@ -151,6 +132,7 @@ $('#add-appoint').on('click',(e)=>{
 $('.planning-time').click((e)=>{
   var time = $(e.target).closest('.planning-time').data('time');
   appointDetails.start_time =time;
+  $('#patientForm').trigger('reset')
   $('.register-patient').removeClass('hide').show();
   $('.success-flash').addClass('hide').hide();
 
@@ -242,20 +224,18 @@ $('.planning-time').click((e)=>{
   let val = targetElt.val();
   if(val == null || val == " " || val.length <= 2)
   {
-    if($('.patient-item').hasClass('hide'))
-    {
-      $('.patient-item').removeClass('hide');
-    }
+    $('.patient-item-search').hide();
+    $('.patient-item').show();
   }else{
     $.get('/rv/searchWithPhone',{phone: val},(result)=>{
       let patient = JSON.parse(result)[0];
-       displaySearchResult(patient);
+      displaySearchResult(patient);
     })
   }
  })
 
   function  displaySearchResult(result) {
-    if(result != null)
+    if(result != null && result != "")
     {
       $('.patient-item').hide();
        $('.fined-phone').text((result.phone));

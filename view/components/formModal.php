@@ -1,5 +1,5 @@
 <div class="modal fade" id="patientFormModal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="false">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-full" role="document">
         <div class="modal-content">
             <div class="modal-body pt-2">
                 <div class="row mb-2">
@@ -10,12 +10,13 @@
                 <?php include(ROOT.DS.'view'.DS.'components'.DS.'successFlash.php'); ?>
                 <div class="container-fluid register-patient">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="p-3 bg-white mb-2">
                                 <div class="h2 text-primary pb-2">Rechercher un patient</div>
                                 <div id="notebooks">
-                                    <input type="text" id="query" />
-                                    <ul id="notebook_ul">
+                                    <input type="text" id="search-phone" placeholder="77xxxxxxx"/>
+                                    <ul id="notebook_ul" class="mb-2">
+                                        <div id="search-result-container" class="bg-danger"></div>
                                         <?php foreach($patients as $patient): ?>
                                             <li class="patient-item" data-id="<?=$patient->id?>">
                                                 <span class="mr-2"><?=$patient->phone?></span>
@@ -23,6 +24,11 @@
                                                 <div class="right top"></div>
                                             </li>
                                         <?php endforeach; ?>
+                                        <li class="patient-item-search patient-item">
+                                            <span class="mr-2 fined-phone"></span>
+                                            <span class="fined-email"></span>
+                                            <div class="right top"></div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -66,7 +72,7 @@
                                                     </button>
                                                     <button class="btn btn-outline-danger btn-sm ">
                                                     <span class="fa fa-trash mr-2"></span>
-                                                    </button>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +84,7 @@
                             </div> 
 
                         </div>
-                        <div class="col-md-6 mt-3 mt-sm-0">
+                        <div class="col-lg-6 mt-3 mt-md-0">
                             <div class="p-4 bg-white pb-5">
                                 <h2 class="text-primary pb-4">Enregistrer un nouveau patient</h2>
                                 <div class="error-flash hide">
@@ -87,7 +93,7 @@
                             <form  id="patientForm" method="POST">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-6 mb-2">
+                                        <div class="col-lg-6 mb-2">
                                             <label for="" class="mb-1">Prenom</label><br>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -98,7 +104,7 @@
                                                 <input type="text" name="first_name" class="form-control"  placeholder="Prenom" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-lg-6">
                                         
                                             <label for="" class="mb-1">Nom</label><br>
                                             <div class="input-group">
@@ -114,7 +120,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-6 mb-2">
+                                        <div class="col-lg-6 mb-2">
                                             <label for="" class="mb-1">Genre</label><br>
                                             <label for="">
                                                 <input type="radio" name="gender" value="M"> M
@@ -123,7 +129,7 @@
                                                 <input type="radio" name="gender" value="F"> F
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-lg-6">
                                         <label for="" class="mb-1">Age</label><br>
                                         <div class="input-group">
                                             <div class="input-group-prepend">

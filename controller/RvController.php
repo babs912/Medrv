@@ -28,7 +28,6 @@ class RvController extends Controller
 
     public function new()
     {
-        
         if(!empty($_POST)){
 
             if(isset($_POST['appoint'])){
@@ -36,13 +35,11 @@ class RvController extends Controller
             }
            return false;
         }
-
         $specialityManager = new SpecialityModel();
 
         $specialities = $specialityManager->findSpecialityService($_SESSION['service']);
         $patientManager = new PatientModel();
         $rvs = $patientManager->getAll();
-        
         
         $calendar = new Calendar();
         $p = new Planning(8,30,17,30);
@@ -107,6 +104,7 @@ class RvController extends Controller
 
     public function searchWithPhone()
     {
+        
         print_r(json_encode($this->patientManager->searchWithPhone($_GET['phone'])));
     }
 }
